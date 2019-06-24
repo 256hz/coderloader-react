@@ -13,7 +13,7 @@ const SectionHeading = (props) => {
 
       <Grid.Row className={`${props.user.color_theme}-heading`}>
         <Grid.Column width={2} textAlign="center" verticalAlign="middle">
-          <Button.Group verticalAlign="middle">
+          <Button.Group>
             {(props.sectionEdit && props.loggedIn && localStorage.getItem('jwt') !== '')
               ? <Button icon="edit" onClick={props.startEdit}/>
               : null}

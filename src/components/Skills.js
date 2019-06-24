@@ -25,17 +25,22 @@ const Skills = (props) => {
                 ? <Grid.Column textAlign="center"><Button type="button" onClick={_ => props.shiftOrder('skills', skill, false)} circular icon="long arrow alternate left"/></Grid.Column>
                 : null}
               <Grid.Column textAlign="center">
-              <Popup key={skill.name} header={skill.name} textAlign="center"
+              <Popup key={skill.name} 
+                header={skill.name} 
+                textAlign="center"
                 position="bottom center" trigger={
-                  <Image src={skill.img_url} className="image-circle-small-skill"
-                  verticalAlign="middle" size="tiny" circular/>
+                  <Image src={skill.img_url} 
+                    className="image-circle-small-skill"
+                    verticalAlign="middle" 
+                    size="tiny" 
+                    circular/>
                 }
               />
               </Grid.Column>
-              {props.loggedIn && index < skills.length -1
+              {props.loggedIn && index < skills.length - 1
                 ? <Grid.Column textAlign="center"><Button type="button" onClick={_ => props.shiftOrder('skills', skill, true)} circular icon="arrows alternate horizontal"/></Grid.Column>
                 : null}
-              {props.loggedIn && index === skills.length -1
+              {props.loggedIn && index === skills.length - 1
                 ? <Grid.Column textAlign="center"><Button type="button" onClick={_ => props.shiftOrder('skills', skill, true)} circular icon="long arrow alternate right"/></Grid.Column>
                 : null}
         </div>)
