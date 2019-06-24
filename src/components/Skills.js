@@ -5,7 +5,8 @@ import SectionHeading from './SectionHeading'
 const Skills = (props) => {
   let skills = props.skills.sort( (a,b) => a.order_id - b.order_id )
   let columns=1
-  props.loggedIn ? columns = skills.length*2+3 : columns = skills.length + 2
+  skills.length*2+3 > 16 && columns = 16
+  !props.loggedIn && columns = skills.length + 2
   return (
   <Grid columns='equal'>
     <SectionHeading text="Primary Skillsets"
@@ -20,7 +21,7 @@ const Skills = (props) => {
     <Grid.Row columns={columns} verticalAlign="middle" textAlign="center">
       <Grid.Column>{' '}</Grid.Column>
       {skills.map( (skill, index) => {
-        return(<> 
+        return(<div key={skill.name+index}> 
               {props.loggedIn && index === 0
                 ? <Grid.Column textAlign="center"><Button type="button" onClick={_ => props.shiftOrder('skills', skill, false)} circular icon="long arrow alternate left"/></Grid.Column>
                 : null}
@@ -38,7 +39,7 @@ const Skills = (props) => {
               {props.loggedIn && index === skills.length -1
                 ? <Grid.Column textAlign="center"><Button type="button" onClick={_ => props.shiftOrder('skills', skill, true)} circular icon="long arrow alternate right"/></Grid.Column>
                 : null}
-        </>)
+        </div>)
       })}
       <Grid.Column>{' '}</Grid.Column>
     </Grid.Row>
