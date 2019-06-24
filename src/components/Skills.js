@@ -5,7 +5,7 @@ import SectionHeading from './SectionHeading'
 const Skills = (props) => {
   let skills = props.skills.sort( (a,b) => a.order_id - b.order_id )
   let columns=1
-  skills.length*2+3 > 16 && columns = 16
+  (skills.length*2+3 > 16) && columns = 16
   !props.loggedIn && columns = skills.length + 2
   return (
   <Grid columns='equal'>
