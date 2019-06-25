@@ -8,11 +8,7 @@ import Githubs from './Githubs'
 import Skills from './Skills'
 import { Grid } from 'semantic-ui-react'
 
-class Content extends Component {
-  constructor() {
-    super()
-  }
-
+const Content = () => {
 
   render() {
     return (
