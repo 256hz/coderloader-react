@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Popup, Image, Button, Divider, Transition} from 'semantic-ui-react'
+import { Grid, Popup, Image, Button } from 'semantic-ui-react'
 import SectionHeading from './SectionHeading'
 
 const Skills = (props) => {
@@ -20,7 +20,7 @@ const Skills = (props) => {
     <Grid.Row columns={columns} verticalAlign="middle" textAlign="center">
       <Grid.Column>{' '}</Grid.Column>
       {skills.map( (skill, index) => {
-        return(<div key={skill.name+index}> 
+        return(<> 
               {props.loggedIn && index === 0
                 ? <Grid.Column textAlign="center"><Button type="button" onClick={_ => props.shiftOrder('skills', skill, false)} circular icon="long arrow alternate left"/></Grid.Column>
                 : null}
@@ -38,7 +38,7 @@ const Skills = (props) => {
               {props.loggedIn && index === skills.length -1
                 ? <Grid.Column textAlign="center"><Button type="button" onClick={_ => props.shiftOrder('skills', skill, true)} circular icon="long arrow alternate right"/></Grid.Column>
                 : null}
-        </div>)
+        </>)
       })}
       <Grid.Column>{' '}</Grid.Column>
     </Grid.Row>
