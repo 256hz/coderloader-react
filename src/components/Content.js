@@ -49,8 +49,8 @@ const Content = (props) => {
 
       <Grid.Row key="jobs" id="jobs">
         <Grid.Column>
-          <Jobs jobs={props.jobs} editing={props.editing}
-            startEdit={props.startEdit} loggedIn={props.loggedIn}
+          <Jobs jobs={props.jobs}         editing={props.editing}
+            startEdit={props.startEdit}   loggedIn={props.loggedIn}
             shiftOrder={props.shiftOrder} startNew={props.startNew}
             user={props.currentUser}
           />
@@ -59,9 +59,9 @@ const Content = (props) => {
 
       <Grid.Row key="github" id="github">
         <Grid.Column>
-          <Githubs githubs={props.githubs} editing={props.editing}
-            startEdit={props.startEdit} loggedIn={props.loggedIn}
-            shiftOrder={props.shiftOrder} startNew={props.startNew}
+          <Githubs githubs={props.githubs}  editing={props.editing}
+            startEdit={props.startEdit}     loggedIn={props.loggedIn}
+            shiftOrder={props.shiftOrder}   startNew={props.startNew}
             user={props.currentUser}
           />
         </Grid.Column>
@@ -70,7 +70,7 @@ const Content = (props) => {
       <Grid.Row key="contact" id="contact">
         <Grid.Column>
           <Contact user={props.currentUser} editing={props.editing}
-            startEdit={startEdit} loggedIn={props.loggedIn}
+            startEdit={props.startEdit}     loggedIn={props.loggedIn}
           />
         </Grid.Column>
       </Grid.Row>
