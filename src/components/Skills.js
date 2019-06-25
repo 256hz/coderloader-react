@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Popup, Image, Button, Divider, Transition} from 'semantic-ui-react'
+import {Grid, Popup, Image, Button } from 'semantic-ui-react'
 import SectionHeading from './SectionHeading'
 
 const Skills = (props) => {

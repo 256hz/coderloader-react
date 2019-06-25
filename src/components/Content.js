@@ -6,9 +6,6 @@ import Contact from './Contact'
 import Jobs from './Jobs'
 import Githubs from './Githubs'
 import Skills from './Skills'
-import Interests from './Interests'
-import Honors from './Honors'
-import Links from './Links'
 import { Grid } from 'semantic-ui-react'
 
 class Content extends Component {

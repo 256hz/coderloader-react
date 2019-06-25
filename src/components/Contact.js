@@ -1,7 +1,6 @@
 import React from 'react'
 import {Grid, Icon} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
-import SectionHeading from './SectionHeading'
 
 const parsePhoneNum = (num) => {
   if (num) {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, List, Button, Grid, Image } from 'semantic-ui-react';
+import { Card, List, Button, Image } from 'semantic-ui-react';
 
 const Job = (props) => {
   return(
