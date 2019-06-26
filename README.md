@@ -9,7 +9,7 @@ CoderLoader is an easily maintainable, pretty, single-page portfolio/resume site
 
 This was bootstrapped with `create-react-app`.  Authentication is done with JWT.  All create/update actions require the JWT token header to POST.  Navigation is done with React Router and anchor tags.  Many components were used from [semantic-ui-react](https://react.semantic-ui.com).
 
-### Installation
+### Installation (OSX/Linux)
 - First, follow the Readme in the [Rails repo](https://github.com/256hz/coderloader-rails/), install, and host.
 - Clone down this repo.
 - Run `yarn install` or `npm install` inside the project folder.
