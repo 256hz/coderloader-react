@@ -5,7 +5,7 @@
 Hello & welcome to CoderLoader's React.js frontend. This contains the web-facing components for to [this](https://github.com/256hz/coderloader-rails/) repo, the Ruby on Rails backend of this project.
 
 ### Overview
-CoderLoader is an easily maintainable, pretty, single-page portfolio/resume site for coders. It includes a place for icons of your primary skills, featured Githubs, job experience, intro, bio, and contact info. It supports easily switching the order of your skills/jobs/Githubs and color theming.
+CoderLoader is an easily maintainable, pretty, single-page portfolio/resume site for coders. It includes a place for icons of your primary skills, featured Githubs, job experience, intro, bio, and contact info. It supports easily switching the order of your skills/jobs/Githubs and color theming.  You can see and edit an example at [the sandbox site](http://sandboxportfolio.256hz.com).
 
 This was bootstrapped with `create-react-app`.  Authentication is done with JWT.  All create/update actions require the JWT token header to POST.  Navigation is done with React Router and anchor tags.  Many components were used from [semantic-ui-react](https://react.semantic-ui.com).
 
