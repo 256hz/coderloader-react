@@ -6,7 +6,7 @@ import Login from './components/Login'
 import LoggedIn from './components/LoggedIn'
 import Editor from './components/Editor'
 
-const apiURL = 'http://pgdb.256hz.com/api/v1/'
+const apiURL = 'http://example.com/api/v1/'
 const HEADERS_AUTH = {
   'Authorization': 'Bearer ' + localStorage.jwt,
   'Content-Type': 'application/json'
