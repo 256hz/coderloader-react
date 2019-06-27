@@ -5,7 +5,7 @@
 Hello & welcome to CoderLoader's React.js frontend. This contains the web-facing components for to [this](https://github.com/256hz/coderloader-rails/) repo, the Ruby on Rails backend of this project.
 
 ### Overview
-CoderLoader is an easily maintainable, pretty, single-page portfolio/resume site for coders. It includes a place for icons of your primary skills, featured Githubs, job experience, intro, bio, and contact info. It supports easily switching the order of your skills/jobs/Githubs and color theming.  You can see and edit an example at [the sandbox site](http://sandboxportfolio.256hz.com).
+[CoderLoader](http://sandboxportfolio.256hz.com) is an easily maintainable, pretty, single-page portfolio/resume site for coders. It includes a place for icons of your primary skills, featured Githubs, job experience, intro, bio, and contact info. It supports easily switching the order of your skills/jobs/Githubs and color theming.  You can see and edit an example at [the sandbox site](http://sandboxportfolio.256hz.com).
 
 This was bootstrapped with `create-react-app`.  Authentication is done with JWT.  All create/update actions require the JWT token header to POST.  Navigation is done with React Router and anchor tags.  Many components were used from [semantic-ui-react](https://react.semantic-ui.com).
 
@@ -43,6 +43,9 @@ Theme colors are at the bottom of the app CSS file (`/src/App.css`).  To make a 
   - the first 3 numbers in the `rgba` color value in the `background: linear-gradient` property.  Take care not to change the fourth number - this is the opacity value.
 
 All done!  Your new theme will show up in the About Me color theme dropdown. 
+
+### To do
+Currently restyling for mobile.
 
 ### Thanks!
 Any changes you want to recommend, simply fork and make a PR, or find me on twitter (@256hertz).  Happy coding! --Abe
