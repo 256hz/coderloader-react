@@ -13,7 +13,7 @@ const NamePicIntro = (props) => {
          <Grid stretched stackable>
             <Grid.Column width={2} />
             <Grid.Column width={6}>
-                  <div>Hello, my name is <br /> <br /></div>
+                  <div>Hello, my name is <br /></div>
 
                   <div className="heading-font font-size-huge">
                      {props.user.first_name} {props.user.last_name} <br />

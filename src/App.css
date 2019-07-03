@@ -31,19 +31,20 @@
 }
 
 .font-size-small {
-  font-size: 18px;
+  font-size: 1rem;
 }
 
 .font-size-medium {
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .font-size-large {
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 .font-size-huge {
-  font-size: 42px;
+  font-size: 3rem;
+  line-height: 3.25rem;
 }
 
 .heading-outer {

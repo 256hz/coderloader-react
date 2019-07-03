@@ -5,14 +5,19 @@ import {Link} from 'react-router-dom'
 const SectionHeading = (props) => {
 
   return (
-    <Grid columns={16}>
-      <Grid.Column width={16}>{' '}</Grid.Column>
-      <Grid.Column width={16} textAlign="center">
+    <Grid>
+      <Grid.Row centered>
+        <br/>
           <Link to="/#nav"><Icon name="triangle up"/></Link>
-      </Grid.Column>
-
-      <Grid.Row className={`${props.user.color_theme}-heading`}>
-        <Grid.Column width={2} textAlign="center" verticalAlign="middle">
+        <br/>
+      </Grid.Row>
+      
+      <Grid.Row className={`${props.user.color_theme}-heading`} width={16}>
+        <Grid.Column width={10} verticalAlign="middle">
+          <span className="font-size-large heading-font">{props.text}</span>
+        </Grid.Column>
+      
+        <Grid.Column width={6} textAlign="right">
           <Button.Group>
             {(props.sectionEdit && props.loggedIn && localStorage.getItem('jwt') !== '')
               ? <Button icon="edit" onClick={props.startEdit}/>
@@ -23,16 +28,7 @@ const SectionHeading = (props) => {
           </Button.Group>
         </Grid.Column>
 
-        <Grid.Column width={14} verticalAlign="middle">
-          <div>
-            <span className="font-size-large heading-font">{props.text}</span>
-          </div>
-        </Grid.Column>
       </Grid.Row>
-
-      <Grid.Column width={16}>{' '}</Grid.Column>
-      <Grid.Column width={16}>{' '}</Grid.Column>
-
     </Grid>
   )
   }

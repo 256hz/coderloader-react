@@ -6,7 +6,7 @@ import SectionHeading from './SectionHeading'
 const AboutMe = (props) => {
   if (!props.user.bio) {
     return (
-      <Grid columns='equal'>
+      <div>
       <SectionHeading text="About Me"
         startEdit={_ => props.startEdit(props.user, 'users')}
         editing={props.editing}
@@ -14,13 +14,13 @@ const AboutMe = (props) => {
         sectionEdit={true}
       user={props.user}
       />
-      </Grid>
+      </div>
     )
   } else {
     let words = props.user.bio.split(" ")
 
     return (
-      <Grid columns='equal'>
+      <div>
         <SectionHeading text="About Me"
           startEdit={_ => props.startEdit(props.user, 'users')}
           editing={props.editing}
@@ -28,7 +28,7 @@ const AboutMe = (props) => {
           sectionEdit={true}
         user={props.user}
         />
-
+      <Grid columns='equal'>
         <Grid.Row columns={16}>
           <Grid.Column width={2}></Grid.Column>
           <Grid.Column width={12}>
@@ -41,7 +41,8 @@ const AboutMe = (props) => {
           <Grid.Column width={2}></Grid.Column>
         </Grid.Row>
         <br />
-      </Grid>
+        </Grid>
+      </div>
     )
   }
 }
