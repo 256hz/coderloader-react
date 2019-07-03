@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom'
 import {Grid, Icon} from "semantic-ui-react"
 
 const Nav = (props) => {
-    // let links = ["skills", "jobs", "githubs", "contact"]
     return (
-        <div textAlign="right">
-            <Link className="item" to="/" onClick={props.openSidebar}><Icon name="bars"/></Link>
-        </div>
+        <Grid>
+            <Grid.Column textAlign="right">
+                <Link className="item" to="/" onClick={props.openSidebar}><Icon color="grey" name="bars"/></Link>
+            </Grid.Column>
+        </Grid>
     )
 }
 

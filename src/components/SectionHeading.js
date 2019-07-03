@@ -17,13 +17,21 @@ const SectionHeading = (props) => {
           <span className="font-size-large heading-font">{props.text}</span>
         </Grid.Column>
       
-        <Grid.Column width={6} textAlign="right">
+        <Grid.Column width={6} textAlign="right" centered>
           <Button.Group>
-            {(props.sectionEdit && props.loggedIn && localStorage.getItem('jwt') !== '')
-              ? <Button icon="edit" onClick={props.startEdit}/>
+            {(props.sectionEdit && props.loggedIn)
+              ? (<Button icon centered onClick={props.startEdit}>
+                  <Button.Content>
+                    <Icon name="edit" />
+                  </Button.Content>
+                </Button>)
               : null}
-            {(props.sectionNew && props.loggedIn && localStorage.getItem('jwt') !== '')
-              ? <Button icon="add circle" onClick={props.startNew}/>
+            {(props.sectionNew && props.loggedIn)
+              ? (<Button icon centered onClick={props.startNew}>
+                  <Button.Content>
+                    <Icon name="add circle" />
+                  </Button.Content>
+                </Button>)
               : null}
           </Button.Group>
         </Grid.Column>

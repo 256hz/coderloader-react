@@ -12,7 +12,7 @@ const AboutMe = (props) => {
         editing={props.editing}
         loggedIn={props.loggedIn}
         sectionEdit={true}
-      user={props.user}
+        user={props.user}
       />
       </div>
     )
