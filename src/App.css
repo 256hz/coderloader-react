@@ -58,11 +58,14 @@
 
 .image-circle-portrait {
   border-radius: 50%;
+  object-fit: cover;
+  min-height: 250px;
+  max-height: 500px;
   /* border: 1px solid teal; */
-  max-width: 500px;
+  /* max-width: 500px;
   max-height: 500px;
   min-width: 500px;
-  min-height: 500px;
+  min-height: 500px; */
 }
 
 .image-circle-small-job {
