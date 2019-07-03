@@ -1,12 +1,14 @@
 import './App.css';
 import React from 'react'
 import { Icon, Menu, Segment, Sidebar, Sticky } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+
 import Content from './components/Content'
 import Login from './components/Login'
 import LoggedIn from './components/LoggedIn'
 import Editor from './components/Editor'
 
-const apiURL = 'http://example.com/api/v1/'
+const apiURL = 'http://localhost:3000/api/v1/'
 const HEADERS_AUTH = {
   'Authorization': 'Bearer ' + localStorage.jwt,
   'Content-Type': 'application/json'
@@ -174,10 +176,6 @@ class App extends React.Component {
       let maxPos = orderIds.length-1
       let move = next ? 1 : -1 //if next is true, shift up; else shift down
 
-      // console.log('shifting:', {incomingGroup, item, next})
-      // console.log('to order_id:', item.order_id + move)
-      // console.log({group, orderIds})
-
       if (curIndex === maxPos && next) {
         let t = orderIds[maxPos]
         orderIds[maxPos] = orderIds[0]
@@ -250,24 +248,30 @@ class App extends React.Component {
           <Sidebar.Pushable as={Segment} className="fix-sidebar">
             <Sticky >
               <Sidebar as={Menu} animation='overlay'
-                 direction='right' icon='labeled'
-                 inverted vertical
-                 visible={this.state.sidebarVisible}
-                 width='wide'
-               >
-                 <Menu.Item as='a' onClick={this.openSidebar}>
-                   <Icon name='bars' size="mini"/>
-                   Close
-                 </Menu.Item>
+                direction='right' icon='labeled'
+                inverted vertical
+                visible={this.state.sidebarVisible}
+                width='wide'
+              >
+                <Menu.Item as='a' onClick={this.openSidebar}>
+                  <Icon name='bars' size="mini"/>
+                  Close
+                </Menu.Item>
 
-                 <Menu.Item as='a'>
+                <Link className="item font-heading" to="/#skills">  SKILLS</Link>
+                <Link className="item font-heading" to="/#jobs">    JOBS</Link>
+                <Link className="item font-heading" to="/#github"> GITHUB</Link>
+                <Link className="item font-heading" to="/#contact"> CONTACT</Link>
+
+                <Menu.Item as='a'>
                     {(this.state.loggedIn && localStorage.getItem('jwt'))
                       ? <LoggedIn username={this.state.username} logOut={this.logOut}/>
                       : <Login login={this.login} message={this.state.message}/>
                     }
-                 </Menu.Item>
+                </Menu.Item>
+                
 
-                 <Editor
+                <Editor
                   editorDisabled={this.state.editorDisabled}
                   editing={this.state.editing}
                   creatingType={this.state.creatingType}
@@ -277,11 +281,11 @@ class App extends React.Component {
                   editingType={this.state.editingType}
                   startEdit={this.startEdit}
                   handleDelete={this.handleDelete}
-                 />
+                />
 
-               </Sidebar>
-             </Sticky>
-             <Sidebar.Pusher dimmed={false}>
+              </Sidebar>
+            </Sticky>
+            <Sidebar.Pusher dimmed={false}>
               <Segment basic className={this.state.currentUser.color_theme}>
 
                 <Content

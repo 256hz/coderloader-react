@@ -10,36 +10,29 @@ const NamePicIntro = (props) => {
    } else {
       let words = props.user.intro.split(" ")
       return(
-         <Grid columns={16} stretched className="">
-            <Grid.Column width={2}></Grid.Column>
-            <Grid.Column width={6} textAlign="left" verticalAlign="middle">
-               <Grid.Row>
-                  <span>Hello, my name is <br /> <br /></span>
-               </Grid.Row>
-               <Grid.Row>
-                  <span className="heading-font font-size-huge">
+         <Grid stretched stackable>
+            <Grid.Column width={2} />
+            <Grid.Column width={6}>
+                  <div>Hello, my name is <br /></div>
+
+                  <div className="heading-font font-size-huge">
                      {props.user.first_name} {props.user.last_name} <br />
-                  </span>
-               </Grid.Row>
-               <Grid.Row>
-               <span className="emphasis">{props.user.title}</span>
-               </Grid.Row>
-               <Grid.Row>
-               <span>
+                  </div>
+
+               <div className="emphasis">{props.user.title}</div>
+
+               <div>
                   {words.map( word => {
                       return word.includes('http://')
                         ? <a href={word} target="_blank" rel="noopener noreferrer">{word.slice(7) + " "}</a>
                         : word + " "
                   })}
-               </span>
-               </Grid.Row>
+               </div>
             </Grid.Column>
-
-            <Grid.Column width={6} textAlign="left">
+            <Grid.Column width={6}>
                <img className="image-circle-portrait"
                   src={props.user.img_url} alt="portrait"></img>
             </Grid.Column>
-            <Grid.Column width={2}></Grid.Column>
          </Grid>
       )
    }
