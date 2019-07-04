@@ -14,20 +14,20 @@ const SectionHeading = (props) => {
       
       <Grid.Row className={`${props.user.color_theme}-heading`} width={16}>
         <Grid.Column width={10} verticalAlign="middle">
-          <span className="font-size-large heading-font">{props.text}</span>
+          <span className="font-size-large font-heading">{props.text}</span>
         </Grid.Column>
       
-        <Grid.Column width={6} textAlign="right" centered>
+        <Grid.Column width={6} textAlign="right">
           <Button.Group>
             {(props.sectionEdit && props.loggedIn)
-              ? (<Button icon centered onClick={props.startEdit}>
+              ? (<Button icon onClick={props.startEdit} color="linkedin">
                   <Button.Content>
                     <Icon name="edit" />
                   </Button.Content>
                 </Button>)
               : null}
             {(props.sectionNew && props.loggedIn)
-              ? (<Button icon centered onClick={props.startNew}>
+              ? (<Button icon onClick={props.startNew} color="green">
                   <Button.Content>
                     <Icon name="add circle" />
                   </Button.Content>

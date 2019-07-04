@@ -35,8 +35,8 @@ const DEFAULT_STATE = {
   creatingType: ''
 }
 
-let keys = Object.keys(DEFAULT_STATE)
-let anchors = keys.slice(0, 7)
+const keys = Object.keys(DEFAULT_STATE)
+const anchors = keys.slice(0, 7)
 // used to automate fetch -- the first 7 entries in default state
 // are the names of the resources we want to fetch.
 
@@ -47,18 +47,18 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-      //check for logged in user
+      // check for logged in user
       if (!!localStorage.jwt && !!localStorage.username) {
         this.setState({loggedIn: true, username: localStorage.username})
       } else {
         this.setState({loggedIn: false})
       }
-      //automated fetch
+      // automated fetch
       anchors.forEach( a => {
         fetch( apiURL + a ).then( res => res.json() )
         .then( json => this.setState({[a]: json}))
       })
-      //special fetch for users
+      // special fetch for users
       fetch( apiURL + 'users').then( res => res.json() )
       .then( users => {
         this.setState({users})
@@ -66,7 +66,8 @@ class App extends React.Component {
       })
     }
 
-    openSidebar = () => {
+    toggleSidebar = () => {
+      // open or close sidebar & clear editingType
       this.setState({
         sidebarVisible: !this.state.sidebarVisible,
         editingType: ''
@@ -76,6 +77,8 @@ class App extends React.Component {
     login = (ev, username, password) => {
       ev.preventDefault()
       this.setState({message: ''})
+
+      // no-auth POST to retrieve JWT token from Rails
       fetch(apiURL + 'login', {
         method: 'POST',
         headers: HEADERS_NOAUTH,
@@ -105,19 +108,21 @@ class App extends React.Component {
     }
 
     startEdit = (content, type) => {
+      // for logged-in users. Handles all clicks of the "edit" icon in SectionHeadings
       if (localStorage.getItem('jwt') !== '') {
         this.setState({
           editing: content,
           editingType: type,
           creatingType: '',
           sidebarVisible: true
-        }) //, ()=>console.log('set up edit', this.state.editingType))
+        })
       } else {
         alert('Please log in to edit')
       }
     }
 
     startNew = (type) => {
+      // for logged-in users. Handles all clicks of the "add circle" icon in SectionHeadings
       if (localStorage.getItem('jwt') !== '') {
         this.setState({
           editing: {},
@@ -129,7 +134,7 @@ class App extends React.Component {
           },
           creatingType: type,
           sidebarVisible: true
-        }) //, ()=>console.log('set up new', this.state.creatingType))
+        })
       } else {
         alert('Please log in to add ' + this.state.creatingType)
       }
@@ -191,8 +196,8 @@ class App extends React.Component {
       }
 
       group.forEach( (item, index) => {
+        // check if item's order has been changed, and if so, PATCH its order_id
         if (item.order_id !== orderIds[index]) {
-          // console.log(item.name + " changed, fetching")
           item.order_id = orderIds[index]
           fetch(apiURL + '/' + incomingGroup + '/'+ item.id, {
             method: "PATCH",
@@ -221,7 +226,8 @@ class App extends React.Component {
         let creatingTypeCopy=this.state.creatingType
         this.setState({
           [creatingTypeCopy]: [...this.state[creatingTypeCopy], json],
-          creatingType: ''
+          creatingType: '',
+          sidebarVisible: false
         })
       })
     }
@@ -244,6 +250,13 @@ class App extends React.Component {
     }
 
     render() {
+        // All content is nested within the Sidebar object.  Inside the sidebar (<Sticky>), 
+        // components are as follows:
+        // - Close button
+        // - Login/LoggedIn (login bar/welcome message & logout)
+        // - Navigation links (shows if we're not editing or creating anything)
+        // - Editor (shown if we are editing/creating things) 
+        // Site content is rendered next.
         return(
           <Sidebar.Pushable as={Segment} className="fix-sidebar">
             <Sticky >
@@ -253,23 +266,26 @@ class App extends React.Component {
                 visible={this.state.sidebarVisible}
                 width='wide'
               >
-                <Menu.Item as='a' onClick={this.openSidebar}>
+                <Menu.Item as='a' onClick={this.toggleSidebar}>
                   <Icon name='bars' size="mini"/>
                   Close
                 </Menu.Item>
 
-                <Link className="item font-heading" to="/#skills">  SKILLS</Link>
-                <Link className="item font-heading" to="/#jobs">    JOBS</Link>
-                <Link className="item font-heading" to="/#github"> GITHUB</Link>
-                <Link className="item font-heading" to="/#contact"> CONTACT</Link>
-
                 <Menu.Item as='a'>
                     {(this.state.loggedIn && localStorage.getItem('jwt'))
-                      ? <LoggedIn username={this.state.username} logOut={this.logOut}/>
+                      ? <LoggedIn username={this.state.currentUser.first_name} logOut={this.logOut}/>
                       : <Login login={this.login} message={this.state.message}/>
                     }
                 </Menu.Item>
                 
+                {this.state.editingType === "" && this.state.creatingType === "" &&
+                  (<>
+                    <Link className="item font-heading" to="/#skills"  onClick={this.toggleSidebar}> SKILLS </Link>
+                    <Link className="item font-heading" to="/#jobs"    onClick={this.toggleSidebar}> JOBS   </Link>
+                    <Link className="item font-heading" to="/#github"  onClick={this.toggleSidebar}> GITHUB </Link>
+                    <Link className="item font-heading" to="/#contact" onClick={this.toggleSidebar}> CONTACT</Link>
+                  </>)
+                }
 
                 <Editor
                   editorDisabled={this.state.editorDisabled}
@@ -289,7 +305,7 @@ class App extends React.Component {
               <Segment basic className={this.state.currentUser.color_theme}>
 
                 <Content
-                  openSidebar={this.openSidebar}
+                  toggleSidebar={this.toggleSidebar}
                   startEdit={this.startEdit}
                   shiftOrder={this.shiftOrder}
                   startNew={this.startNew}

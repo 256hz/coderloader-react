@@ -9,9 +9,9 @@
   margin: 10px;
 }
 
-.centered {
+/* .centered {
   text-align: center;
-}
+} */
 
 .company-logo-name-container{
   display: inline-block;
@@ -52,7 +52,7 @@
   width:100%;
 }
 
-.heading-font {
+.font-heading {
   font-family: 'Josefin Sans', sans-serif;
   /* font-weight: 700; */
 }

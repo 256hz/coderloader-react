@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card, Image, Button} from 'semantic-ui-react'
+import {Card, Image, Button, Icon, Grid} from 'semantic-ui-react'
 
 
 const fancyName = (name) => {
@@ -11,6 +11,28 @@ const Github = (props) => {
   let _name = fancyName(github.repo_name)
   return (
   <Card raised className="corner-sharp">
+    {props.loggedIn
+      ? <Card.Content>
+          <Grid columns={2}>
+            <Grid.Column textAlign="center">
+              <Button.Group>
+                <Button icon onClick={_ => props.shiftOrder('githubs', github, false)}>
+                  <Button.Content><Icon name='left arrow'></Icon></Button.Content>
+                </Button>
+                <Button icon onClick={_ => props.shiftOrder('githubs', github, true)}>
+                  <Button.Content><Icon name='right arrow'></Icon></Button.Content>
+                </Button>
+              </Button.Group>
+            </Grid.Column>
+            <Grid.Column textAlign="right">
+              <Button icon onClick={_ => props.startEdit(github, 'githubs')}>
+                <Button.Content><Icon name='edit'></Icon></Button.Content>
+              </Button>
+            </Grid.Column>
+          </Grid>
+        </Card.Content>
+      : null
+    }
     <Card.Content href={`https://github.com/${github.repo_owner}/${github.repo_name}`}
         target="_blank" className="card-height">
 
@@ -20,14 +42,7 @@ const Github = (props) => {
         <Card.Description>  {github.contribution}   </Card.Description>
 
     </Card.Content>
-      {props.loggedIn
-        ? <Card.Content>
-          <Button type="button" onClick={_ => props.shiftOrder('githubs', github, false)} icon="left arrow"/>
-          <Button type="button" onClick={_ => props.shiftOrder('githubs', github, true)} icon="right arrow"/>
-          <Button floated='right' size="small" onClick={_ => props.startEdit(github, 'githubs')} icon="edit"/>
-        </Card.Content>
-        : null
-      }
+
   </Card>
   )
 }

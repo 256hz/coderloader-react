@@ -5,11 +5,14 @@ const Login = (props) => {
 
     return (
     <Grid columns="equal" textAlign="center">
-        Welcome, {props.username}
-        <p> </p>
-        <Button size="tiny"
-            onClick={props.logOut}
-        >Logout</Button>
+        <Grid.Row>
+            Welcome, {props.username}
+        </Grid.Row>
+        <Grid.Row>
+            <Button size="tiny" onClick={props.logOut}>
+                Logout
+            </Button>
+        </Grid.Row>
     </Grid>
         )
 }
