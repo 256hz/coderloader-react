@@ -91,13 +91,12 @@
 }
 
 .image-circle-small-skill {
+  min-width: 70px !important;
+  max-width: 80px !important;
+  /* height: 80px !important; */
+  overflow: hidden;
   border-radius: 50%;
   border: 1px solid rgba(0, 129, 129, .3);
-  width: 60px;
-  height: 60px;
-  overflow: hidden;
-  margin: 10px;
-  position: relative;
 }
 
 .image-circle-small-skill img {
@@ -120,6 +119,10 @@ img {
   font-family: 'Reem Kufi', sans-serif;
   font-size: 4rem;
 }
+
+/* .skill-button {
+  max-width: 90px;
+} */
 
 .side-crop {
   width: 60px;

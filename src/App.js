@@ -35,10 +35,9 @@ const DEFAULT_STATE = {
   creatingType: ''
 }
 
-const keys = Object.keys(DEFAULT_STATE)
-const anchors = keys.slice(0, 7)
 // used to automate fetch -- the first 7 entries in default state
 // are the names of the resources we want to fetch.
+const anchors = Object.keys(DEFAULT_STATE).slice(0, 7)
 
 class App extends React.Component {
     constructor() {
@@ -55,10 +54,11 @@ class App extends React.Component {
       }
       // automated fetch
       anchors.forEach( a => {
-        fetch( apiURL + a ).then( res => res.json() )
-        .then( json => this.setState({[a]: json}))
+        fetch( apiURL + a )
+        .then( res => res.json() )
+        .then( json => this.setState({[a]: json}) )
       })
-      // special fetch for users
+      // special fetch for users - only works for one user
       fetch( apiURL + 'users').then( res => res.json() )
       .then( users => {
         this.setState({users})

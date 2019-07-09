@@ -6,10 +6,9 @@ const SectionHeading = (props) => {
 
   return (
     <Grid>
+      <Grid.Row>{' '}</Grid.Row>
       <Grid.Row centered>
-        <br/>
-          <Link to="/#nav"><Icon name="triangle up"/></Link>
-        <br/>
+        <Link to="/#nav"><Icon name="triangle up"/></Link>
       </Grid.Row>
       
       <Grid.Row className={`${props.user.color_theme}-heading`} width={16}>
@@ -37,6 +36,8 @@ const SectionHeading = (props) => {
         </Grid.Column>
 
       </Grid.Row>
+      <Grid.Row>{' '}</Grid.Row>
+      <Grid.Row>{' '}</Grid.Row>
     </Grid>
   )
   }

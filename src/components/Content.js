@@ -39,10 +39,10 @@ const Content = (props) => {
       <Grid.Row key="skills" id="skills">
         <Grid.Column>
           <Skills 
-            skills={props.skills}          editing={props.editing}
-            startEdit={props.startEdit}    loggedIn={props.loggedIn}
-            shiftOrder={props.shiftOrder}  startNew={props.startNew}
-            user={props.currentUser}
+            skills={props.skills}         editing={props.editing}
+            startEdit={props.startEdit}   loggedIn={props.loggedIn}
+            shiftOrder={props.shiftOrder} startNew={props.startNew}
+            user={props.currentUser}      onDragEnd={props.onDragEnd}
           />
         </Grid.Column>
       </Grid.Row>

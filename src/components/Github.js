@@ -14,19 +14,19 @@ const Github = (props) => {
     {props.loggedIn
       ? <Card.Content>
           <Grid columns={2}>
-            <Grid.Column textAlign="center">
-              <Button.Group>
+            <Grid.Column textAlign="center" verticalAlign="middle">
+              <Button.Group compact>
                 <Button icon onClick={_ => props.shiftOrder('githubs', github, false)}>
-                  <Button.Content><Icon name='left arrow'></Icon></Button.Content>
+                  <Button.Content><Icon name='left arrow' /></Button.Content>
                 </Button>
                 <Button icon onClick={_ => props.shiftOrder('githubs', github, true)}>
-                  <Button.Content><Icon name='right arrow'></Icon></Button.Content>
+                  <Button.Content><Icon name='right arrow' /></Button.Content>
                 </Button>
               </Button.Group>
             </Grid.Column>
             <Grid.Column textAlign="right">
-              <Button icon onClick={_ => props.startEdit(github, 'githubs')}>
-                <Button.Content><Icon name='edit'></Icon></Button.Content>
+              <Button onClick={_ => props.startEdit(github, 'githubs')} icon compact color="linkedin">
+                <Button.Content><Icon name='edit' /></Button.Content>
               </Button>
             </Grid.Column>
           </Grid>
@@ -37,7 +37,7 @@ const Github = (props) => {
         target="_blank" className="card-height">
 
         <Image floated='right' size='mini' src={github.img_url} />
-        <Card.Header>       {_name}             </Card.Header>
+        <Card.Header>       {_name}                 </Card.Header>
         <Card.Meta>         {github.summary}        </Card.Meta>
         <Card.Description>  {github.contribution}   </Card.Description>
 

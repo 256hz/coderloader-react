@@ -1,12 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid, Popup, Image, Button } from 'semantic-ui-react'
 
 export default function Skill(props) {
-
-  return(
-    <> 
+  if (props.loggedIn) {
+    return(
+        <Grid.Column textAlign="center">
+          <Button className="skill-button">
+            <Popup key={props.skill.name+props.index} 
+              header={props.skill.name} 
+              textAlign="center"
+              position="bottom center" 
+              trigger={
+                <Image src={props.skill.img_url} 
+                  className="image-circle-small-skill"
+                />
+              }
+            />
+          </Button>
+        </Grid.Column>
+    )
+  } else {
+    return(
       <Grid.Column textAlign="center">
-        <Popup key={props.skill.name+props.index} 
+        <Popup key={props.skill.name+props.index}
           header={props.skill.name} 
           textAlign="center"
           position="bottom center" 
@@ -20,6 +36,6 @@ export default function Skill(props) {
           }
         />
       </Grid.Column>
-    </>
-  )
+    )
+  }
 }
