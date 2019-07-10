@@ -15,7 +15,7 @@ const Content = (props) => {
 
       <Grid.Row key="nav" id="nav">
         <Grid.Column>
-          <Nav openSidebar={props.openSidebar} loggedIn={props.loggedIn}/>
+          <Nav toggleSidebar={props.toggleSidebar} loggedIn={props.loggedIn}/>
         </Grid.Column>
       </Grid.Row>
 
@@ -39,9 +39,19 @@ const Content = (props) => {
       <Grid.Row key="skills" id="skills">
         <Grid.Column>
           <Skills 
-            skills={props.skills}          editing={props.editing}
-            startEdit={props.startEdit}    loggedIn={props.loggedIn}
-            shiftOrder={props.shiftOrder}  startNew={props.startNew}
+            skills={props.skills}         editing={props.editing}
+            startEdit={props.startEdit}   loggedIn={props.loggedIn}
+            shiftOrder={props.shiftOrder} startNew={props.startNew}
+            user={props.currentUser}      
+          />
+        </Grid.Column>
+      </Grid.Row>
+
+      <Grid.Row key="github" id="github">
+        <Grid.Column>
+          <Githubs githubs={props.githubs}  editing={props.editing}
+            startEdit={props.startEdit}     loggedIn={props.loggedIn}
+            shiftOrder={props.shiftOrder}   startNew={props.startNew}
             user={props.currentUser}
           />
         </Grid.Column>
@@ -52,16 +62,6 @@ const Content = (props) => {
           <Jobs jobs={props.jobs}         editing={props.editing}
             startEdit={props.startEdit}   loggedIn={props.loggedIn}
             shiftOrder={props.shiftOrder} startNew={props.startNew}
-            user={props.currentUser}
-          />
-        </Grid.Column>
-      </Grid.Row>
-
-      <Grid.Row key="github" id="github">
-        <Grid.Column>
-          <Githubs githubs={props.githubs}  editing={props.editing}
-            startEdit={props.startEdit}     loggedIn={props.loggedIn}
-            shiftOrder={props.shiftOrder}   startNew={props.startNew}
             user={props.currentUser}
           />
         </Grid.Column>

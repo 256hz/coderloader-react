@@ -25,7 +25,7 @@ const Contact = (props) => {
 
           <Grid.Column width={2} >
             <div>
-              <span className="font-size-large heading-font">Contact</span>
+              <span className="font-size-large font-heading">Contact</span>
             </div>
           </Grid.Column>
           <Grid.Column width={4} textAlign="right">
