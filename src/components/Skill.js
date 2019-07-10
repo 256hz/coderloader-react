@@ -5,13 +5,13 @@ export default function Skill(props) {
   if (props.loggedIn) {
     return(
         <Grid.Column textAlign="center">
-          <Button 
+          <Button
+            basic
             className="skill-button" 
             onClick={_ => props.startEdit(props.skill, 'skills')}
           >
             <Popup key={props.skill.name+props.index} 
               header={props.skill.name} 
-              textAlign="center"
               position="bottom center" 
               trigger={
                 <Image src={props.skill.img_url} 
@@ -27,7 +27,6 @@ export default function Skill(props) {
       <Grid.Column textAlign="center">
         <Popup key={props.skill.name+props.index}
           header={props.skill.name} 
-          textAlign="center"
           position="bottom center" 
           trigger={
             <Image src={props.skill.img_url} 

@@ -4,6 +4,10 @@
   /* text-align: center; */
 }
 
+.button-heading {
+  /* margin-left: 100px; */
+}
+
 .card-height {
   min-height: 350px;
   margin: 10px;

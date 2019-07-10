@@ -26,7 +26,7 @@ const Github = (props) => {
             </Grid.Column>
             <Grid.Column textAlign="right">
               <Button onClick={_ => props.startEdit(github, 'githubs')} icon compact color="linkedin">
-                <Button.Content><Icon name='edit' /></Button.Content>
+                <Button.Content><Icon name='edit' fitted/></Button.Content>
               </Button>
             </Grid.Column>
           </Grid>

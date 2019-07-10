@@ -21,14 +21,14 @@ const SectionHeading = (props) => {
             {(props.sectionEdit && props.loggedIn)
               ? (<Button icon onClick={props.startEdit} color="linkedin">
                   <Button.Content>
-                    <Icon name="edit" />
+                    <Icon name="edit" fitted/>
                   </Button.Content>
                 </Button>)
               : null}
             {(props.sectionNew && props.loggedIn)
               ? (<Button icon onClick={props.startNew} color="green">
                   <Button.Content>
-                    <Icon name="add circle" />
+                    <Icon name="add circle" fitted/>
                   </Button.Content>
                 </Button>)
               : null}

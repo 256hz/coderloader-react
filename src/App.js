@@ -31,7 +31,6 @@ const DEFAULT_STATE = {
   editorDisabled: true,
   editing: {},
   editingType: '',
-  editingSkill: {},
   creating: {},
   creatingType: ''
 }
@@ -260,7 +259,7 @@ class App extends React.Component {
         // Site content is rendered next.
         return(
           <Sidebar.Pushable as={Segment} className="fix-sidebar">
-            <Sticky >
+            <Sticky>
               <Sidebar as={Menu} animation='overlay'
                 direction='right' icon='labeled'
                 inverted vertical
@@ -289,15 +288,16 @@ class App extends React.Component {
                 }
 
                 <Editor
-                  creating={this.state.creating}
-                  creatingType={this.state.creatingType}
-                  editing={this.state.editing}
-                  editorDisabled={this.state.editorDisabled}
-                  editingType={this.state.editingType}
-                  handleCreate={this.handleCreate}
-                  handleDelete={this.handleDelete}
-                  handleSubmit={this.handleSubmit}
-                  startEdit={this.startEdit}
+                  creating =        {this.state.creating}
+                  creatingType =    {this.state.creatingType}
+                  editing =         {this.state.editing}
+                  editorDisabled =  {this.state.editorDisabled}
+                  editingType =     {this.state.editingType}
+                  handleCreate =    {this.handleCreate}
+                  handleDelete =    {this.handleDelete}
+                  handleSubmit =    {this.handleSubmit}
+                  shiftOrder =      {this.shiftOrder}
+                  startEdit =       {this.startEdit}
                 />
 
               </Sidebar>
@@ -306,21 +306,20 @@ class App extends React.Component {
               <Segment basic className={this.state.currentUser.color_theme}>
 
                 <Content
-                  currentUser= {this.state.currentUser}
-                  editing={this.state.editing}
-                  editingSkill={this.state.editingSkill}
-                  githubs={this.state.githubs}
-                  honors={this.state.honors}
-                  interests={this.state.interests}
-                  jobs={this.state.jobs}
-                  links={this.state.links}
-                  loggedIn={this.state.loggedIn}
-                  skills={this.state.skills}
-                  toggleSidebar={this.toggleSidebar}
-                  shiftOrder={this.shiftOrder}
-                  startEdit={this.startEdit}
-                  startNew={this.startNew}
-                  users={this.state.users}
+                  currentUser =   {this.state.currentUser}
+                  editing =       {this.state.editing}
+                  githubs =       {this.state.githubs}
+                  honors =        {this.state.honors}
+                  interests =     {this.state.interests}
+                  jobs =          {this.state.jobs}
+                  links =         {this.state.links}
+                  loggedIn =      {this.state.loggedIn}
+                  skills =        {this.state.skills}
+                  shiftOrder =    {this.shiftOrder}
+                  startEdit =     {this.startEdit}
+                  startNew =      {this.startNew}
+                  users =         {this.state.users}
+                  toggleSidebar = {this.toggleSidebar}
                 />
 
               </Segment>
