@@ -12,11 +12,11 @@ const SectionHeading = (props) => {
       </Grid.Row>
       
       <Grid.Row className={`${props.user.color_theme}-heading`} width={16}>
-        <Grid.Column width={10} verticalAlign="middle">
+        <Grid.Column width={12} verticalAlign="middle">
           <span className="font-size-large font-heading">{props.text}</span>
         </Grid.Column>
       
-        <Grid.Column width={6} textAlign="right">
+        <Grid.Column width={4} textAlign="right">
           <Button.Group>
             {(props.sectionEdit && props.loggedIn)
               ? (<Button icon onClick={props.startEdit} color="linkedin">

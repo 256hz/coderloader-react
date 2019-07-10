@@ -42,7 +42,7 @@ const Content = (props) => {
             skills={props.skills}         editing={props.editing}
             startEdit={props.startEdit}   loggedIn={props.loggedIn}
             shiftOrder={props.shiftOrder} startNew={props.startNew}
-            user={props.currentUser}      onDragEnd={props.onDragEnd}
+            user={props.currentUser}      
           />
         </Grid.Column>
       </Grid.Row>

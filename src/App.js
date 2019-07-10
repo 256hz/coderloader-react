@@ -31,6 +31,7 @@ const DEFAULT_STATE = {
   editorDisabled: true,
   editing: {},
   editingType: '',
+  editingSkill: {},
   creating: {},
   creatingType: ''
 }
@@ -77,8 +78,7 @@ class App extends React.Component {
     login = (ev, username, password) => {
       ev.preventDefault()
       this.setState({message: ''})
-
-      // no-auth POST to retrieve JWT token from Rails
+      // no-auth POST to retrieve JWT from Rails
       fetch(apiURL + 'login', {
         method: 'POST',
         headers: HEADERS_NOAUTH,
@@ -175,6 +175,7 @@ class App extends React.Component {
     }
 
     shiftOrder = (incomingGroup, item, next) => {
+      // for changing order of skills, jobs, and githubs
       let group = this.state[incomingGroup].sort( (a,b) => a.order_id - b.order_id )
       let orderIds = group.map( s => s.order_id )
       let curIndex = orderIds.indexOf( item.order_id )
@@ -288,15 +289,15 @@ class App extends React.Component {
                 }
 
                 <Editor
-                  editorDisabled={this.state.editorDisabled}
-                  editing={this.state.editing}
-                  creatingType={this.state.creatingType}
                   creating={this.state.creating}
-                  handleSubmit={this.handleSubmit}
-                  handleCreate={this.handleCreate}
+                  creatingType={this.state.creatingType}
+                  editing={this.state.editing}
+                  editorDisabled={this.state.editorDisabled}
                   editingType={this.state.editingType}
-                  startEdit={this.startEdit}
+                  handleCreate={this.handleCreate}
                   handleDelete={this.handleDelete}
+                  handleSubmit={this.handleSubmit}
+                  startEdit={this.startEdit}
                 />
 
               </Sidebar>
@@ -305,20 +306,21 @@ class App extends React.Component {
               <Segment basic className={this.state.currentUser.color_theme}>
 
                 <Content
-                  toggleSidebar={this.toggleSidebar}
-                  startEdit={this.startEdit}
-                  shiftOrder={this.shiftOrder}
-                  startNew={this.startNew}
-                  jobs={this.state.jobs}
-                  githubs={this.state.githubs}
-                  interests={this.state.interests}
-                  skills={this.state.skills}
-                  honors={this.state.honors}
-                  links={this.state.links}
-                  users={this.state.users}
                   currentUser= {this.state.currentUser}
                   editing={this.state.editing}
+                  editingSkill={this.state.editingSkill}
+                  githubs={this.state.githubs}
+                  honors={this.state.honors}
+                  interests={this.state.interests}
+                  jobs={this.state.jobs}
+                  links={this.state.links}
                   loggedIn={this.state.loggedIn}
+                  skills={this.state.skills}
+                  toggleSidebar={this.toggleSidebar}
+                  shiftOrder={this.shiftOrder}
+                  startEdit={this.startEdit}
+                  startNew={this.startNew}
+                  users={this.state.users}
                 />
 
               </Segment>

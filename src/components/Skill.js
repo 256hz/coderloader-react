@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Grid, Popup, Image, Button } from 'semantic-ui-react'
 
 export default function Skill(props) {
   if (props.loggedIn) {
     return(
         <Grid.Column textAlign="center">
-          <Button className="skill-button">
+          <Button 
+            className="skill-button" 
+            onClick={_ => props.startEdit(props.skill, 'skills')}
+          >
             <Popup key={props.skill.name+props.index} 
               header={props.skill.name} 
               textAlign="center"

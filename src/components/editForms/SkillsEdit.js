@@ -14,14 +14,14 @@ export default class SkillsEdit extends Component {
 
   static getDerivedStateFromProps(props, state) {
     if (props.content.id !== state.content.id) {
-      return {content: [...props.content]}
+      return {content: props.content}
     }
   }
 
   handleChange = (ev, i) => {
-    let contentCopy = [...this.state.content]
-    contentCopy[i] = {
-      ...contentCopy[i],
+    let contentCopy = this.state.content
+    contentCopy = {
+      ...contentCopy,
       [ev.target.name]: ev.target.value
     }
     this.setState({
@@ -31,22 +31,18 @@ export default class SkillsEdit extends Component {
 
   render(){
     return(
-      this.props.content.map((skill, i) => {
-        return(
-          <Form inverted onSubmit={() => this.props.handleSubmit(this.state.content[i])}>
+          <Form inverted onSubmit={() => this.props.handleSubmit(this.state.content)}>
             <Form.Field>
               <label>Skill</label>
-              <input name="name" value={this.state.content[i].name} onChange={(ev) => this.handleChange(ev, i)}/>
+              <input name="name" value={this.state.content.name} onChange={(ev) => this.handleChange(ev)}/>
             </Form.Field>
             <Form.Field>
               <label>Image URL</label>
-              <input name="img_url" value={this.state.content[i].img_url} onChange={(ev) => this.handleChange(ev, i)}/>
+              <input name="img_url" value={this.state.content.img_url} onChange={(ev) => this.handleChange(ev)}/>
             </Form.Field>
             <Button type='submit'>Submit</Button>
-            <Button negative type='button' onClick={() => this.props.handleDelete(this.state.content[i])}>Delete</Button>
+            <Button negative type='button' onClick={() => this.props.handleDelete(this.state.content)}>Delete</Button>
           </Form>
         )
-      }
-    ))
   }
 }
