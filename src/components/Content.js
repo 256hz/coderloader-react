@@ -71,6 +71,7 @@ const Content = (props) => {
         <Grid.Column>
           <Contact user={props.currentUser} editing={props.editing}
             startEdit={props.startEdit}     loggedIn={props.loggedIn}
+            text="Contact"
           />
         </Grid.Column>
       </Grid.Row>

@@ -11,32 +11,24 @@ const parsePhoneNum = (num) => {
 const Contact = (props) => {
 
     return (
-
-      <Grid columns={16}>
-        <Grid.Column width={16}>{' '}</Grid.Column>
-
-        <Grid.Column width={16} textAlign="center">
+      <Grid columns={3} stackable centered>
+        <Grid.Row />
+        <Grid.Row centered>
           <Link to="/#nav"><Icon name="triangle up"/></Link>
-        </Grid.Column>
+        </Grid.Row>
+        
+        <Grid.Row className={`${props.user.color_theme}-heading`} verticalAlign="middle">
+          <Grid.Column verticalAlign="middle">
+            <span className="font-size-large font-heading">{props.text}</span>
+          </Grid.Column>      
 
-        <Grid.Row className={`${props.user.color_theme}-heading`}>
-          <Grid.Column width={2} textAlign="center" verticalAlign="middle">
-          </Grid.Column>
-
-          <Grid.Column width={2} >
-            <div>
-              <span className="font-size-large font-heading">Contact</span>
-            </div>
-          </Grid.Column>
-          <Grid.Column width={4} textAlign="right">
+          <Grid.Column className="text" textAlign="center">
             <a href={"mailto:"+props.user.email}>{props.user.email}</a>
           </Grid.Column>
-          <Grid.Column width={4} textAlign="left">
+
+          <Grid.Column className="text" textAlign="center">
             <a href={"tel: +1"+ props.user.phone}>+1 {parsePhoneNum(props.user.phone)}</a>
           </Grid.Column>
-
-          <Grid.Column width={16}>{' '}</Grid.Column>
-          <Grid.Column width={16}>{' '}</Grid.Column>
         </Grid.Row>
       </Grid>
     )

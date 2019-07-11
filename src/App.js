@@ -1,8 +1,8 @@
 import './App.css';
 import React from 'react'
-import { Icon, Menu, Segment, Sidebar, Sticky } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Icon, Menu, Segment, Sidebar, Sticky, Confirm, Button} from 'semantic-ui-react'
 
+import NavLinks from './components/NavLinks'
 import Content from './components/Content'
 import Login from './components/Login'
 import LoggedIn from './components/LoggedIn'
@@ -24,19 +24,21 @@ const DEFAULT_STATE = {
   links: [],
   users: [],
 
-  message: '',
+  confirmOpen: false,
+  contentToDelete: {},
+  creating: {},
+  creatingType: '',
   currentUser: {},
-  sidebarVisible: false,
-  loggedIn: false,
   editorDisabled: true,
   editing: {},
   editingType: '',
-  creating: {},
-  creatingType: ''
+  loggedIn: false,
+  message: '',
+  sidebarVisible: false,
 }
 
 // used to automate fetch -- the first 7 entries in default state
-// are the names of the resources we want to fetch.
+// are the names of the resources we get from the API.
 const anchors = Object.keys(DEFAULT_STATE).slice(0, 7)
 
 class App extends React.Component {
@@ -58,7 +60,7 @@ class App extends React.Component {
         .then( res => res.json() )
         .then( json => this.setState({[a]: json}) )
       })
-      // special fetch for users - only works for one user
+      // special fetch for users - sets current user as first returned
       fetch( apiURL + 'users').then( res => res.json() )
       .then( users => {
         this.setState({users})
@@ -107,7 +109,7 @@ class App extends React.Component {
     }
 
     startEdit = (content, type) => {
-      // for logged-in users. Handles all clicks of the "edit" icon in SectionHeadings
+      // Handles all clicks of the "edit" button in SectionHeadings
       if (localStorage.getItem('jwt') !== '') {
         this.setState({
           editing: content,
@@ -121,7 +123,7 @@ class App extends React.Component {
     }
 
     startNew = (type) => {
-      // for logged-in users. Handles all clicks of the "add circle" icon in SectionHeadings
+      // Handles all clicks of the "add" button in SectionHeadings
       if (localStorage.getItem('jwt') !== '') {
         this.setState({
           editing: {},
@@ -140,6 +142,7 @@ class App extends React.Component {
     }
 
     handleSubmit = (content) => {
+      // Handles submission of edited content
       fetch(apiURL+this.state.editingType+'/'+content.id, {
         method: "PATCH",
         headers: HEADERS_AUTH,
@@ -227,12 +230,19 @@ class App extends React.Component {
         this.setState({
           [creatingTypeCopy]: [...this.state[creatingTypeCopy], json],
           creatingType: '',
-          sidebarVisible: false
+          sidebarVisible: false,
         })
       })
     }
 
     handleDelete = (content) => {
+      this.setState({
+        confirmOpen: true,
+        contentToDelete: content,
+      })
+    }
+
+    confirmDelete = (content) => {
       fetch(apiURL+this.state.editingType+'/'+content.id, {
         method: "DELETE",
         headers: HEADERS_AUTH
@@ -243,8 +253,10 @@ class App extends React.Component {
         copy.splice(copy.findIndex(el => el.id === json.id),1)
         this.setState({
           [this.state.editingType]: copy,
+          confirmOpen: false,
+          contentToDelete: {},
           editingType: '',
-          sidebarVisible: false
+          sidebarVisible: false,
         })
       })
     }
@@ -252,75 +264,90 @@ class App extends React.Component {
     render() {
         // All content is nested within the Sidebar object.  Inside the sidebar (<Sticky>), 
         // components are as follows:
-        // - Close button
+        // - Close button (top)
         // - Login/LoggedIn (login bar/welcome message & logout)
-        // - Navigation links (shows if we're not editing or creating anything)
+        // Then, a ternary shows:
+        // - Navigation (if we're not editing or creating anything) or
         // - Editor (shown if we are editing/creating things) 
+        // - Close button (bottom)
         // Site content is rendered next.
         return(
           <Sidebar.Pushable as={Segment} className="fix-sidebar">
             <Sticky>
-              <Sidebar as={Menu} animation='overlay'
-                direction='right' icon='labeled'
-                inverted vertical
+              <Sidebar 
+                animation='overlay'
+                as={Menu} 
+                direction='right' 
+                icon='labeled'
+                inverted 
+                vertical
                 visible={this.state.sidebarVisible}
                 width='wide'
-              >
+                >
                 <Menu.Item as='a' onClick={this.toggleSidebar}>
                   <Icon name='bars' size="mini"/>
                   Close
                 </Menu.Item>
 
                 <Menu.Item as='a'>
-                    {(this.state.loggedIn && localStorage.getItem('jwt'))
+                    {this.state.loggedIn && localStorage.getItem('jwt')
                       ? <LoggedIn username={this.state.currentUser.first_name} logOut={this.logOut}/>
                       : <Login login={this.login} message={this.state.message}/>
                     }
                 </Menu.Item>
                 
-                {this.state.editingType === "" && this.state.creatingType === "" &&
-                  (<>
-                    <Link className="item font-heading" to="/#skills"  onClick={this.toggleSidebar}> SKILLS </Link>
-                    <Link className="item font-heading" to="/#jobs"    onClick={this.toggleSidebar}> JOBS   </Link>
-                    <Link className="item font-heading" to="/#github"  onClick={this.toggleSidebar}> GITHUB </Link>
-                    <Link className="item font-heading" to="/#contact" onClick={this.toggleSidebar}> CONTACT</Link>
-                  </>)
-                }
-
-                <Editor
-                  creating =        {this.state.creating}
-                  creatingType =    {this.state.creatingType}
-                  editing =         {this.state.editing}
-                  editorDisabled =  {this.state.editorDisabled}
-                  editingType =     {this.state.editingType}
-                  handleCreate =    {this.handleCreate}
-                  handleDelete =    {this.handleDelete}
-                  handleSubmit =    {this.handleSubmit}
-                  shiftOrder =      {this.shiftOrder}
-                  startEdit =       {this.startEdit}
-                />
-
+                {this.state.editingType === "" && this.state.creatingType === ""
+                  ? <NavLinks toggleSidebar={this.toggleSidebar}/>
+                  : <Menu.Item>
+                      <Editor
+                        creating=       {this.state.creating}
+                        creatingType=   {this.state.creatingType}
+                        editing=        {this.state.editing}
+                        editorDisabled= {this.state.editorDisabled}
+                        editingType=    {this.state.editingType}
+                        handleCreate=   {this.handleCreate}
+                        handleDelete=   {this.handleDelete}
+                        handleSubmit=   {this.handleSubmit}
+                        shiftOrder=     {this.shiftOrder}
+                        startEdit=      {this.startEdit}
+                      />
+                    </Menu.Item>
+                  }
+                
+                <Menu.Item as='a' onClick={this.toggleSidebar}>
+                  <Icon name='bars' size="mini"/>
+                  Close
+                </Menu.Item>
               </Sidebar>
             </Sticky>
             <Sidebar.Pusher dimmed={false}>
               <Segment basic className={this.state.currentUser.color_theme}>
 
                 <Content
-                  currentUser =   {this.state.currentUser}
-                  editing =       {this.state.editing}
-                  githubs =       {this.state.githubs}
-                  honors =        {this.state.honors}
-                  interests =     {this.state.interests}
-                  jobs =          {this.state.jobs}
-                  links =         {this.state.links}
-                  loggedIn =      {this.state.loggedIn}
-                  skills =        {this.state.skills}
-                  shiftOrder =    {this.shiftOrder}
-                  startEdit =     {this.startEdit}
-                  startNew =      {this.startNew}
-                  users =         {this.state.users}
-                  toggleSidebar = {this.toggleSidebar}
+                  currentUser=  {this.state.currentUser}
+                  editing=      {this.state.editing}
+                  githubs=      {this.state.githubs}
+                  honors=       {this.state.honors}
+                  interests=    {this.state.interests}
+                  jobs=         {this.state.jobs}
+                  links=        {this.state.links}
+                  loggedIn=     {this.state.loggedIn}
+                  skills=       {this.state.skills}
+                  shiftOrder=   {this.shiftOrder}
+                  startEdit=    {this.startEdit}
+                  startNew=     {this.startNew}
+                  toggleSidebar={this.toggleSidebar}
+                  users=        {this.state.users}
                 />
+
+                <Confirm 
+                  cancelButton={<Button>Go Back</Button>}
+                  confirmButton={<Button negative>Delete</Button>}
+                  onCancel={_ => this.setState({confirmOpen: false})}
+                  onConfirm={_ => this.confirmDelete(this.state.contentToDelete)}
+                  open={this.state.confirmOpen}
+                  size='mini'
+                  />                  
 
               </Segment>
             </Sidebar.Pusher>
