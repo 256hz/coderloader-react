@@ -6,7 +6,9 @@ const Nav = (props) => {
     return (
         <Grid>
             <Grid.Column textAlign="right">
-                <Link className="item" to="/" onClick={props.toggleSidebar}><Icon color="grey" name="bars" size="large"/></Link>
+                <Link className="item" to="/" onClick={props.toggleSidebar}>
+                    <Icon color="black" name="bars" size="large"/>
+                </Link>
             </Grid.Column>
         </Grid>
     )

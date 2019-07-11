@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Menu } from 'semantic-ui-react'
+import { Form, Button, Menu, Icon } from 'semantic-ui-react'
 
 export default class GithubEdit extends Component {
 
@@ -8,7 +8,13 @@ export default class GithubEdit extends Component {
     this.state = {
       content:{
         id: -1,
-        name: ''
+        name: '',
+        demo_url: '',
+        repo_url_back: '',
+        repo_url_front: '',
+        contribution: '',
+        content: {},
+        summary: ''
       }
     }
   }
@@ -84,7 +90,7 @@ export default class GithubEdit extends Component {
         </Form.Field>
         <Form.Field>
           <label>Summary</label>
-          <input name="summary" value={this.state.content.summary} onChange={this.handleChange}/>
+          <textarea name="summary" value={this.state.content.summary} onChange={this.handleChange}/>
         </Form.Field>
         <Menu.Item>
           <label>Contributions</label>
@@ -92,7 +98,9 @@ export default class GithubEdit extends Component {
             return (
               <Form.Group key={i}>
                 <input name="contribution" value={this.state.content.contribution[i]} onChange={(ev) => this.handleNestedChange(ev, i)}/>
-                <Button negative type="button" onClick={() => this.handleRemoveContribution(i)}> - </Button>
+                <Button negative type="button" onClick={() => this.handleRemoveContribution(i)}>
+                  <Icon name="delete" fitted />
+                </Button>
               </Form.Group>
             )
           })}
