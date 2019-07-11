@@ -24,8 +24,14 @@ const Jobs = (props) => {
         <Grid.Column width={12} >
         <Card.Group itemsPerRow={1}>
           {jobs.map( (job,index) => 
-            <Job key={job.company + index} job={job} loggedIn={props.loggedIn}
-                  shiftOrder={props.shiftOrder} startEdit={props.startEdit}/>)}
+            <Job 
+              key={job.company + index}
+              job={job}
+              loggedIn={props.loggedIn}
+              shiftOrder={props.shiftOrder}
+              startEdit={props.startEdit}
+            />
+          )}
         </Card.Group>
         </Grid.Column>
         <Grid.Column width={2} />

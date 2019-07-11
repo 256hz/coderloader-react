@@ -6,7 +6,7 @@ const SectionHeading = (props) => {
 
   return (
     <Grid>
-      <Grid.Row>{' '}</Grid.Row>
+      <Grid.Row />
       <Grid.Row centered>
         <Link to="/#nav"><Icon name="triangle up"/></Link>
       </Grid.Row>
@@ -16,28 +16,28 @@ const SectionHeading = (props) => {
           <span className="font-size-large font-heading">{props.text}</span>
         </Grid.Column>
       
-        <Grid.Column width={4} textAlign="right">
-          <Button.Group>
+        <Grid.Column width={4}>
+          <Button.Group floated="right">
             {(props.sectionEdit && props.loggedIn)
-              ? (<Button icon onClick={props.startEdit} color="linkedin">
+              ? <Button onClick={props.startEdit} color="linkedin">
                   <Button.Content>
                     <Icon name="edit" fitted/>
                   </Button.Content>
-                </Button>)
+                </Button>
               : null}
             {(props.sectionNew && props.loggedIn)
-              ? (<Button icon onClick={props.startNew} color="green">
+              ? <Button onClick={props.startNew} color="green">
                   <Button.Content>
                     <Icon name="add circle" fitted/>
                   </Button.Content>
-                </Button>)
+                </Button>
               : null}
           </Button.Group>
         </Grid.Column>
 
       </Grid.Row>
-      <Grid.Row>{' '}</Grid.Row>
-      <Grid.Row>{' '}</Grid.Row>
+      <Grid.Row />
+      <Grid.Row />
     </Grid>
   )
   }

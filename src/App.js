@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react'
-import { Icon, Menu, Segment, Sidebar, Sticky } from 'semantic-ui-react'
+import { Icon, Menu, Segment, Sidebar, Sticky, } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 import Content from './components/Content'
@@ -260,9 +260,13 @@ class App extends React.Component {
         return(
           <Sidebar.Pushable as={Segment} className="fix-sidebar">
             <Sticky>
-              <Sidebar as={Menu} animation='overlay'
-                direction='right' icon='labeled'
-                inverted vertical
+              <Sidebar 
+                animation='overlay'
+                as={Menu} 
+                direction='right' 
+                icon='labeled'
+                inverted 
+                vertical
                 visible={this.state.sidebarVisible}
                 width='wide'
               >

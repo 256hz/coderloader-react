@@ -34,19 +34,19 @@ export default class Skills extends React.Component {
         />
 
         <Grid columns={16} stackable centered>
-          <Grid.Column/>
-            <Grid columns={'equal'} textAlign="center" stackable centered>
-              {skills.map( (skill, index) => {
-                return(
-                  <Skill skill={skill} 
-                    index={index} 
-                    key={skill.name+index}
-                    loggedIn={this.props.loggedIn}
-                    startEdit={this.props.startEdit}
-                  />)
-              })}
-            </Grid>
-          <Grid.Column/>
+          <Grid.Column />
+          <Grid columns={'equal'} textAlign="center" stackable centered>
+            {skills.map( (skill, index) => {
+              return(
+                <Skill skill={skill} 
+                  index={index} 
+                  key={skill.name+index}
+                  loggedIn={this.props.loggedIn}
+                  startEdit={this.props.startEdit}
+                />)
+            })}
+          </Grid>
+          <Grid.Column />
         </Grid>
         <br />
       </div>

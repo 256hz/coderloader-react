@@ -80,9 +80,12 @@ export default class SkillsEdit extends Component {
             <Form.Field>
               <Grid centered>
                 <Grid.Row>
-                <Button type='submit' color="linkedin">Submit</Button>
-                {'   '}
-                <Button negative type='button' onClick={() => this.props.handleDelete(this.state.content)}>Delete</Button>
+                <Button type='submit' color="linkedin">
+                  Submit
+                </Button>
+                <Button negative onClick={() => this.props.handleDelete(this.state.content)}>
+                  Delete
+                </Button>
                 </Grid.Row>
               </Grid>
             </Form.Field>
