@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
-import { Form, Button, Menu, Icon } from 'semantic-ui-react'
+import { 
+  Form, 
+  Button, 
+  Input,
+  Header
+  } from 'semantic-ui-react'
 
 export default class GithubEdit extends Component {
 
@@ -12,8 +17,7 @@ export default class GithubEdit extends Component {
         demo_url: '',
         repo_url_back: '',
         repo_url_front: '',
-        contribution: '',
-        content: {},
+        contribution: [''],
         summary: ''
       }
     }
@@ -72,46 +76,62 @@ export default class GithubEdit extends Component {
   render(){
     return(
       <Form inverted onSubmit={() => this.props.handleSubmit(this.state.content)}>
+        <Header size='large' inverted>
+          Edit Repo
+        </Header> 
+
         <Form.Field>
           <label>Name</label>
           <input name="name" value={this.state.content.name} onChange={this.handleChange}/>
         </Form.Field>
+
         <Form.Field>
           <label>Front End Repo URL</label>
           <input name="repo_url_front" value={this.state.content.repo_url_front} onChange={this.handleChange}/>
         </Form.Field>
+
         <Form.Field>
           <label>Back End Repo URL</label>
           <input name="repo_url_back" value={this.state.content.repo_url_back} onChange={this.handleChange}/>
         </Form.Field>
+
         <Form.Field>
           <label>Demo URL</label>
           <input name="demo_url" value={this.state.content.demo_url} onChange={this.handleChange}/>
         </Form.Field>
+
         <Form.Field>
           <label>Summary</label>
           <textarea name="summary" value={this.state.content.summary} onChange={this.handleChange}/>
         </Form.Field>
-        <Menu.Item>
+
+        <Form.Field>
           <label>Contributions</label>
-          {this.state.content.contribution.map((res, i) => {
+          {this.state.content.contribution.map((con, i) => {
             return (
-              <Form.Group key={i}>
-                <input name="contribution" value={this.state.content.contribution[i]} onChange={(ev) => this.handleNestedChange(ev, i)}/>
-                <Button negative type="button" onClick={() => this.handleRemoveContribution(i)}>
-                  <Icon name="delete" fitted />
-                </Button>
-              </Form.Group>
+              <Form.Field key={'con_field_'+i}>
+                <Input name="contribution" 
+                  key={'con_input_'+i}
+                  value={con} 
+                  onChange={(ev) => this.handleNestedChange(ev, i)}
+                  action={{ 
+                    onClick: () => this.handleRemoveContribution(i),
+                    icon: 'delete', 
+                    color: 'red', 
+                    }}
+                />
+              </Form.Field>      
             )
           })}
           <Button type="button" onClick={this.handleAddContribution}>Add New Contribution</Button>
-        </Menu.Item>
+        </Form.Field>
+        
         <Form.Field>
           <label>Image URL</label>
           <input name="img_url" value={this.state.content.img_url} onChange={this.handleChange}/>
         </Form.Field>
 
-        <Button type='submit'>Submit</Button>
+        <Button type='submit' color="linkedin">Submit</Button>
         <Button negative type="button" onClick={() => this.props.handleDelete(this.state.content)}>Delete</Button>
       </Form>
     )

@@ -6,7 +6,7 @@ import {Grid, Card} from 'semantic-ui-react'
 
 const Githubs = (props) => {
   if (!props.githubs) {
-    return "Loading . . ."
+    return <span className="font-heading font-size-large">Loading...</span>
   } else {
     let githubs = props.githubs.sort( (a,b) => a.order_id - b.order_id )
     return (

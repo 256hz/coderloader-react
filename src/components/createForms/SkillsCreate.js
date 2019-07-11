@@ -25,7 +25,9 @@ export default class SkillsCreate extends Component {
   render(){
     return(
       <Form inverted onSubmit={() => this.props.handleCreate(this.state.content)}>
-      <Header inverted size='large'>Add New Skill</Header>
+        <Header inverted size='large'>
+          Add New Skill
+        </Header>
         <Form.Field>
           <label>Skill</label>
           <input name="name" value={this.state.content.name} onChange={this.handleChange}/>
@@ -34,7 +36,7 @@ export default class SkillsCreate extends Component {
           <label>Image URL</label>
           <input name="img_url" value={this.state.content.img_url} onChange={this.handleChange}/>
         </Form.Field>
-        <Button type='submit'>Submit</Button>
+        <Button type='submit' color="linkedin">Submit</Button>
       </Form>
     )
   }

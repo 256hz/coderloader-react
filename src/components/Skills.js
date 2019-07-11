@@ -18,7 +18,7 @@ export default class Skills extends React.Component {
 
   render() {
     if (!this.props.skills) {
-      return "Loading. . ."
+      return <span className="font-heading font-size-large">Loading...</span>
     } else {
       let skills = this.props.skills.sort( (a,b) => a.order_id - b.order_id )
       return (

@@ -16,21 +16,23 @@ const SectionHeading = (props) => {
           <span className="font-size-large font-heading">{props.text}</span>
         </Grid.Column>
       
-        <Grid.Column width={4}>
+        <Grid.Column width={4} verticalAlign="middle">
           <Button.Group floated="right">
             {(props.sectionEdit && props.loggedIn)
-              ? <Button onClick={props.startEdit} color="linkedin">
-                  <Button.Content>
-                    <Icon name="edit" fitted/>
-                  </Button.Content>
-                </Button>
+              ? <Button 
+                  onClick={props.startEdit} 
+                  color="linkedin"
+                  icon="edit"
+                  size="large"
+                />
               : null}
             {(props.sectionNew && props.loggedIn)
-              ? <Button onClick={props.startNew} color="green">
-                  <Button.Content>
-                    <Icon name="add circle" fitted/>
-                  </Button.Content>
-                </Button>
+              ? <Button 
+                  onClick={props.startNew} 
+                  color="green"
+                  icon="add circle"
+                  size="large"
+                  />
               : null}
           </Button.Group>
         </Grid.Column>

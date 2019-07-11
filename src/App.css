@@ -1,21 +1,13 @@
-/* All entries alphabetical, except body and * at the bottom */
+/* All entries alphabetical, except: body, *, theme at bottom */
 
-.App {
-  /* text-align: center; */
-}
-
-.button-heading {
-  /* margin-left: 100px; */
+.centered {
+  text-align: center;
 }
 
 .card-height {
   min-height: 350px;
   margin: 10px;
 }
-
-/* .centered {
-  text-align: center;
-} */
 
 .company-logo-name-container{
   display: inline-block;
@@ -36,19 +28,22 @@
 
 .font-size-small {
   font-size: 1rem;
+  line-height: 1.25rem;
 }
 
 .font-size-medium {
   font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .font-size-large {
   font-size: 2rem;
+  line-height: 4rem;
 }
 
 .font-size-huge {
   font-size: 3rem;
-  line-height: 3.25rem;
+  line-height: 4rem;
 }
 
 .heading-outer {
@@ -58,7 +53,6 @@
 
 .font-heading {
   font-family: 'Josefin Sans', sans-serif;
-  /* font-weight: 700; */
 }
 
 .image-circle-portrait {
@@ -66,32 +60,6 @@
   object-fit: cover;
   min-height: 250px;
   max-height: 500px;
-  /* border: 1px solid teal; */
-  /* max-width: 500px;
-  max-height: 500px;
-  min-width: 500px;
-  min-height: 500px; */
-}
-
-.image-circle-small-job {
-  border-radius: 50%;
-  border: 1px solid rgba(0, 129, 129, .3);
-  width: 60px;
-  height: 60px;
-  overflow: hidden;
-  margin: 10px;
-  position: relative;
-}
-
-.image-circle-small-job img {
-  position: absolute;
-  left: -1000%;
-  right: -1000%;
-  top: -1000%;
-  bottom: -1000%;
-  margin: auto;
-  min-height: 100%;
-  min-width: 100%;
 }
 
 .image-circle-small-skill {
@@ -119,44 +87,11 @@ img {
   max-width: 100%;
 }
 
-.name {
-  font-family: 'Reem Kufi', sans-serif;
-  font-size: 4rem;
+.left {
+  text-align: left;
 }
 
-/* .skill-button {
-  max-width: 90px;
-} */
-
-.side-crop {
-  width: 60px;
-  height: 60px;
-  overflow: hidden;
-  margin: 10px;
-  position: relative;
-}
-
-.side-crop img {
-  position: absolute;
-  left: -1000%;
-  right: -1000%;
-  top: -1000%;
-  bottom: -1000%;
-  margin: auto;
-  min-height: 100%;
-  min-width: 100%;
-}
-
-.right-padded {
-  padding: 0% 5% 0% 0%;
-  margin-top: 0%;
-}
-
-.wide {
-  width: 100%;
-}
-
-* {
+.text {
   font-family: 'Montserrat', sans-serif;
   font-weight: 300;
   font-size: 1.25rem;
@@ -164,6 +99,7 @@ img {
   text-align: justify;
 }
 
+/* ----------------- THEMES ------------------- */
 
 .theme-default-heading{
   background: linear-gradient(90deg, rgba(255, 0, 191, 0.25) 0%, rgba(255,255,255,0) 100%);

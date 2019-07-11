@@ -13,18 +13,18 @@ const NamePicIntro = (props) => {
          <Grid stackable>
             <Grid.Column width={2} />
             <Grid.Column width={6} verticalAlign="middle">
-               Hello, my name is 
+               <span className="text">Hello, my name is</span>
                
-               <br /><br />
+               <br />
                <span className="font-heading font-size-huge">
                   {props.user.first_name} {props.user.last_name} 
                </span>
 
                <br />
-               <span className="font-heading">{props.user.title}</span>
+               <span className="font-heading font-size-medium">{props.user.title}</span>
 
                <br /><br />
-               <span>
+               <span className="text">
                   {words.map( word => {
                       return word.includes('http://')
                         ? <a href={word} target="_blank" rel="noopener noreferrer">{word.slice(7) + " "}</a>

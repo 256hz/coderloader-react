@@ -9,7 +9,7 @@ const Login = (props) => {
             Welcome, {props.username}
         </Grid.Row>
         <Grid.Row>
-            <Button size="tiny" onClick={props.logOut}>
+            <Button size="tiny" onClick={props.logOut} inverted>
                 Logout
             </Button>
         </Grid.Row>
