@@ -78,8 +78,6 @@ const Github = (props) => {
         
         <Image 
           src={github.img_url}
-          size='medium' 
-          rounded
           style={{display: 'block', margin: 'auto', marginBottom: '10px'}} 
         />
         
