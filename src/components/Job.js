@@ -54,12 +54,12 @@ const Job = (props) => {
 
         <Card.Content>
           <Card.Meta>
-            SKILLS USED
+            RESPONSIBILITIES
           </Card.Meta>
           <Card.Description>
-            <List bulleted>
-              {props.job.skills_used.map(skill => {
-                  return <List.Item key={skill} className='font_size_small'>{skill}</List.Item>
+            <List bulleted> 
+              {props.job.responsibilities.map( (res, index) => {
+                  return <List.Item key={res + index} className='font_size_small'>{res}</List.Item>
                 })}
             </List>
           </Card.Description>
@@ -67,12 +67,12 @@ const Job = (props) => {
 
         <Card.Content>
           <Card.Meta>
-            RESPONSIBILITIES
+            SKILLS USED
           </Card.Meta>
           <Card.Description>
-            <List bulleted> 
-              {props.job.responsibilities.map( (res, index) => {
-                  return <List.Item key={res + index} className='font_size_small'>{res}</List.Item>
+            <List bulleted>
+              {props.job.skills_used.map(skill => {
+                  return <List.Item key={skill} className='font_size_small'>{skill}</List.Item>
                 })}
             </List>
           </Card.Description>

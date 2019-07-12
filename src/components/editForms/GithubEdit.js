@@ -34,6 +34,19 @@ export default class GithubEdit extends Component {
     })
   }
 
+  handleNested = (category, action, index) => {
+    let categoryCopy = this.state.content[category]
+    action === 'add'
+      ? categoryCopy.push('')
+      : categoryCopy.splice(index, 1)
+    this.setState({
+      content: {
+        ...this.state.content,
+        [category]: categoryCopy
+      }
+    })
+  }
+
   handleNestedChange = (ev, i) => {
     let copy = this.state.content[ev.target.name]
     copy[i] = ev.target.value
@@ -41,28 +54,6 @@ export default class GithubEdit extends Component {
       content:{
         ...this.state.content,
         [ev.target.name]: copy
-      }
-    })
-  }
-
-  handleAddContribution = () => {
-    let contributionCopy = this.state.content.contribution
-    contributionCopy.push('')
-    this.setState({
-      content:{
-        ...this.state.content,
-        contribution: contributionCopy
-      }
-    })
-  }
-
-  handleRemoveContribution = (i) => {
-    let contributionCopy = this.state.content.contribution
-    contributionCopy.splice(i,1)
-    this.setState({
-      content:{
-        ...this.state.content,
-        contribution: contributionCopy
       }
     })
   }
@@ -110,7 +101,7 @@ export default class GithubEdit extends Component {
                   onChange={(ev) => this.handleNestedChange(ev, i)}
                   action={{
                     type: 'button', 
-                    onClick: () => this.handleRemoveContribution(i),
+                    onClick: _ => this.handleNested('contribution', 'remove', i),
                     icon: 'delete', 
                     color: 'red', 
                     }}
@@ -118,7 +109,12 @@ export default class GithubEdit extends Component {
               </Form.Field>      
             )
           })}
-          <Button type='button' onClick={this.handleAddContribution}>Add New Contribution</Button>
+          <Button 
+            type='button'
+            color='green' 
+            onClick={_ => this.handleNested('contribution','add')}
+          >
+          Add New Contribution</Button>
         </Form.Field>
         
         <Form.Field>

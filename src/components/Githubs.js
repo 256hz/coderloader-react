@@ -11,7 +11,7 @@ const Githubs = (props) => {
     let githubs = props.githubs.sort( (a,b) => a.order_id - b.order_id )
     return (
       <div>
-        <SectionHeading text='Featured Repos'
+        <SectionHeading text='Technical Projects'
           getContent =  { _ => props.getContent(props.githubs)}
           editing =     {props.editing}
           loggedIn =    {props.loggedIn}
