@@ -4,7 +4,7 @@ const Links = (props) => {
 
   return (
     <div>
-      <div className="heading">Links</div>
+      <div className='heading'>Links</div>
       {props.links.map( honor => {
         return <div>
           <div>{honor.month} {honor.year}</div>

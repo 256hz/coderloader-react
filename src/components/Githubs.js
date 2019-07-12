@@ -6,12 +6,12 @@ import {Grid, Card} from 'semantic-ui-react'
 
 const Githubs = (props) => {
   if (!props.githubs) {
-    return <span className="font-heading font-size-large">Loading...</span>
+    return <span className='font-heading font-size-large'>Loading...</span>
   } else {
     let githubs = props.githubs.sort( (a,b) => a.order_id - b.order_id )
     return (
       <div>
-        <SectionHeading text="Featured Repos"
+        <SectionHeading text='Featured Repos'
           getContent =  { _ => props.getContent(props.githubs)}
           editing =     {props.editing}
           loggedIn =    {props.loggedIn}

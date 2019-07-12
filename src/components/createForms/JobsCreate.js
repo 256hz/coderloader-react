@@ -110,26 +110,26 @@ export default class JobsCreate extends Component {
       <Form inverted onSubmit={() => this.handleCreate(this.state.content)}>
         <Form.Field>
           <label>Company</label>
-          <input name="company" value={this.state.content.company} onChange={this.handleChange}/>
+          <input name='company' value={this.state.content.company} onChange={this.handleChange}/>
         </Form.Field>
 
         <Form.Field>
           <label>Title</label>
-          <input name="title" value={this.state.content.title} onChange={this.handleChange}/>
+          <input name='title' value={this.state.content.title} onChange={this.handleChange}/>
         </Form.Field>
 
         <Form.Field>
           <label>Summary</label>
-          <input name="summary" value={this.state.content.summary} onChange={this.handleChange}/>
+          <input name='summary' value={this.state.content.summary} onChange={this.handleChange}/>
         </Form.Field>
 
         <Form.Group>
           <Form.Field>
             <label>Start Month</label>
-            <select name="start_month" 
+            <select name='start_month' 
               value={this.state.content.start_month} 
               onChange={this.handleChange}
-              size="large"
+              size='large'
               >
               <Months />
             </select>
@@ -137,10 +137,10 @@ export default class JobsCreate extends Component {
           
           <Form.Field>
             <label>Start Year</label>
-            <input name="start_year"
+            <input name='start_year'
               onChange={this.handleChange}
-              step="1" 
-              type="number" 
+              step='1' 
+              type='number' 
               value={this.state.content.start_year} 
               />
           </Form.Field>
@@ -149,14 +149,14 @@ export default class JobsCreate extends Component {
         <Form.Group>
           <Form.Field>
             <label>End Month</label>
-            <select name="end_month" value={this.state.content.end_month} onChange={this.handleChange}>
+            <select name='end_month' value={this.state.content.end_month} onChange={this.handleChange}>
               <Months />
             </select>
           </Form.Field>
 
           <Form.Field>
             <label>End Year</label>
-            <input type="number" name="end_year" step="1" value={this.state.content.end_year} onChange={this.handleChange}/>
+            <input type='number' name='end_year' step='1' value={this.state.content.end_year} onChange={this.handleChange}/>
           </Form.Field>
         </Form.Group>
 
@@ -167,7 +167,7 @@ export default class JobsCreate extends Component {
           {this.state.content.responsibilities.map((res, i) => {
             return (
               <Form.Field key={res+i+'field'}>
-                <Input name="responsibilities"
+                <Input name='responsibilities'
                   key={'resinput'+i} 
                   value={this.state.content.responsibilities[i]} 
                   onChange={(ev) => this.handleNestedChange(ev, i)}
@@ -183,9 +183,10 @@ export default class JobsCreate extends Component {
           
           <Button 
             onClick={this.handleAddResp} 
-            color="green"
+            color='green'
+            type='button'
             >
-            <Icon name="add circle" />
+            <Icon name='add circle' />
             Add New Responsibility
           </Button>
               
@@ -198,7 +199,7 @@ export default class JobsCreate extends Component {
           {this.state.content.skills_used.map((skill, i) => {
             return (
               <Form.Field key={'skill_field_'+i}>
-                <Input name="skills_used" 
+                <Input name='skills_used' 
                   key={'skill_input'+i}
                   value={this.state.content.skills_used[i]} 
                   onChange={(ev) => this.handleNestedChange(ev, i)}
@@ -213,9 +214,10 @@ export default class JobsCreate extends Component {
           })}
           <Button 
             onClick={this.handleAddSkill} 
-            color="green"
+            color='green'
+            type='button'
           >
-            <Icon name="add circle" />
+            <Icon name='add circle' />
             Add New Skill
           </Button>
         </Form.Field>
@@ -224,13 +226,13 @@ export default class JobsCreate extends Component {
 
         <Form.Field>
           <label>Image URL</label>
-          <input name="img_url" value={this.state.content.img_url} onChange={this.handleChange}/>
+          <input name='img_url' value={this.state.content.img_url} onChange={this.handleChange}/>
         </Form.Field>
 
-        <Button type='submit' color="linkedin">
+        <Button type='submit' color='linkedin'>
           Submit
         </Button>
-        <Button negative type="button" onClick={() => this.props.handleDelete(this.state.content)}>
+        <Button negative type='button' onClick={() => this.props.handleDelete(this.state.content)}>
           Delete
         </Button>
       </Form>

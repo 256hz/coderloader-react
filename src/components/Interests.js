@@ -4,7 +4,7 @@ const Interests = (props) => {
 
   return (
     <div>
-      <div className="heading">Interests</div>
+      <div className='heading'>Interests</div>
       {props.interests.map( honor => {
         return <div>
           <div>{honor.month} {honor.year}</div>

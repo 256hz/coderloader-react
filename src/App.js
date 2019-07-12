@@ -109,7 +109,7 @@ class App extends React.Component {
     }
 
     startEdit = (content, type) => {
-      // Handles all clicks of the "edit" button in SectionHeadings
+      // Handles all clicks of the 'edit' button in SectionHeadings
       if (localStorage.getItem('jwt') !== '') {
         this.setState({
           editing: content,
@@ -123,7 +123,7 @@ class App extends React.Component {
     }
 
     startNew = (type) => {
-      // Handles all clicks of the "add" button in SectionHeadings
+      // Handles all clicks of the 'add' button in SectionHeadings
       if (localStorage.getItem('jwt') !== '') {
         this.setState({
           editing: {},
@@ -144,7 +144,7 @@ class App extends React.Component {
     handleSubmit = (content) => {
       // Handles submission of edited content
       fetch(apiURL+this.state.editingType+'/'+content.id, {
-        method: "PATCH",
+        method: 'PATCH',
         headers: HEADERS_AUTH,
         body: JSON.stringify({...content})
       })
@@ -153,19 +153,19 @@ class App extends React.Component {
       .then(json => {
         let editingTypeCopy=this.state.editingType
         switch(editingTypeCopy) {
-          case "users": this.setState({users: [json], currentUser: json})
+          case 'users': this.setState({users: [json], currentUser: json})
             break
-          case "skills": let skillsCopy = this.state.skills.map(skill => {
+          case 'skills': let skillsCopy = this.state.skills.map(skill => {
               return (skill.id === content.id) ? content : skill
             })
             this.setState({skills: skillsCopy})
             break
-          case "jobs": let jobsCopy = this.state.jobs.map(job => {
+          case 'jobs': let jobsCopy = this.state.jobs.map(job => {
               return (job.id === content.id) ? content : job
             })
             this.setState({jobs: jobsCopy})
             break
-          case "githubs": let githubsCopy = this.state.githubs.map(github => {
+          case 'githubs': let githubsCopy = this.state.githubs.map(github => {
               return (github.id === content.id) ? content : github
             })
             this.setState({githubs: githubsCopy})
@@ -177,12 +177,15 @@ class App extends React.Component {
     }
 
     shiftOrder = (incomingGroup, item, next) => {
-      // for changing order of skills, jobs, and githubs
+      // Change order of skills, jobs, and githubs.
+      // Params are the group being edited, the item, and whether it's
+      // being shifted up or down in order.
       let group = this.state[incomingGroup].sort( (a,b) => a.order_id - b.order_id )
       let orderIds = group.map( s => s.order_id )
       let curIndex = orderIds.indexOf( item.order_id )
       let maxPos = orderIds.length-1
-      let move = next ? 1 : -1 //if next is true, shift up; else shift down
+      //if next is true, shift up; else shift down
+      let move = next ? 1 : -1 
 
       if (curIndex === maxPos && next) {
         let t = orderIds[maxPos]
@@ -203,7 +206,7 @@ class App extends React.Component {
         if (item.order_id !== orderIds[index]) {
           item.order_id = orderIds[index]
           fetch(apiURL + '/' + incomingGroup + '/'+ item.id, {
-            method: "PATCH",
+            method: 'PATCH',
             headers: HEADERS_AUTH,
             body: JSON.stringify({...item})
           }).then( res => res.json() )
@@ -216,7 +219,7 @@ class App extends React.Component {
     handleCreate = (content) => {
       content['order_id']=this.state[this.state.creatingType].length
       fetch(apiURL+this.state.creatingType, {
-        method: "POST",
+        method: 'POST',
         headers: HEADERS_AUTH,
         body: JSON.stringify({
           ...content,
@@ -244,7 +247,7 @@ class App extends React.Component {
 
     confirmDelete = (content) => {
       fetch(apiURL+this.state.editingType+'/'+content.id, {
-        method: "DELETE",
+        method: 'DELETE',
         headers: HEADERS_AUTH
       })
       .then(res => res.json())
@@ -262,17 +265,25 @@ class App extends React.Component {
     }
 
     render() {
-        // All content is nested within the Sidebar object.  Inside the sidebar (<Sticky>), 
-        // components are as follows:
-        // - Close button (top)
-        // - Login/LoggedIn (login bar/welcome message & logout)
-        // Then, a ternary shows:
-        // - Navigation (if we're not editing or creating anything) or
-        // - Editor (shown if we are editing/creating things) 
-        // - Close button (bottom)
-        // Site content is rendered next.
+        /*
+          All content is nested within the Sidebar object.  Inside the sidebar (<Sticky>), 
+          components are as follows:
+          - Close button (top)
+          - Login/LoggedIn (login bar/welcome message & logout)
+          Then, a ternary shows:
+          - Navigation (if we're not editing or creating anything) or
+          - Editor (shown if we are editing/creating things) 
+          - Close button (bottom)
+          Site content is rendered next.
+          - NamePicIntro
+          - AboutMe
+          - Repos
+          - Jobs
+          - Contact
+          Finally, a confirm window for deleting a resource.
+        */
         return(
-          <Sidebar.Pushable as={Segment} className="fix-sidebar">
+          <Sidebar.Pushable as={Segment} className='fix-sidebar'>
             <Sticky>
               <Sidebar 
                 animation='overlay'
@@ -285,7 +296,7 @@ class App extends React.Component {
                 width='wide'
                 >
                 <Menu.Item as='a' onClick={this.toggleSidebar}>
-                  <Icon name='bars' size="mini"/>
+                  <Icon name='bars' size='mini'/>
                   Close
                 </Menu.Item>
 
@@ -296,7 +307,7 @@ class App extends React.Component {
                     }
                 </Menu.Item>
                 
-                {this.state.editingType === "" && this.state.creatingType === ""
+                {this.state.editingType === '' && this.state.creatingType === ''
                   ? <NavLinks toggleSidebar={this.toggleSidebar}/>
                   : <Menu.Item>
                       <Editor
@@ -315,7 +326,7 @@ class App extends React.Component {
                   }
                 
                 <Menu.Item as='a' onClick={this.toggleSidebar}>
-                  <Icon name='bars' size="mini"/>
+                  <Icon name='bars' size='mini'/>
                   Close
                 </Menu.Item>
               </Sidebar>

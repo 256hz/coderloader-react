@@ -18,12 +18,12 @@ export default class Editor extends Component {
   chooseContent = () => {
     if (this.props.editingType) {
       switch (this.props.editingType) {
-        case "users":
+        case 'users':
           return <AboutMeEdit 
                     content={this.props.editing} 
                     handleSubmit={this.props.handleSubmit} 
                   />
-        case "skills":
+        case 'skills':
           return <SkillsEdit 
                     content={this.props.editing} 
                     handleSubmit={this.props.handleSubmit}
@@ -31,14 +31,14 @@ export default class Editor extends Component {
                     handleDelete={this.props.handleDelete} 
                     shiftOrder={this.props.shiftOrder}
                   />
-        case "jobs":
+        case 'jobs':
           return <JobEdit 
                     content={this.props.editing} 
                     handleSubmit={this.props.handleSubmit}
                     startEdit={this.props.startEdit} 
                     handleDelete={this.props.handleDelete}
                   />
-        case "githubs":
+        case 'githubs':
           return <GithubEdit 
                     content={this.props.editing} 
                     handleSubmit={this.props.handleSubmit}
@@ -50,17 +50,17 @@ export default class Editor extends Component {
       }
     } else if (this.props.creatingType) {
       switch (this.props.creatingType) {
-        case "skills":
+        case 'skills':
           return <SkillsCreate 
                   content={this.props.creating} 
                   handleCreate={this.props.handleCreate}
                 />
-        case "jobs":
+        case 'jobs':
           return <JobsCreate 
                   content={this.props.creating} 
                   handleCreate={this.props.handleCreate}
                 />
-        case "githubs":
+        case 'githubs':
           return <GithubsCreate 
                   content={this.props.creating} 
                   handleCreate={this.props.handleCreate}

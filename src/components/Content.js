@@ -11,15 +11,15 @@ import { Grid } from 'semantic-ui-react'
 const Content = (props) => {
 
   return (
-    <Grid columns="equal">
+    <Grid columns='equal'>
 
-      <Grid.Row key="nav" id="nav">
+      <Grid.Row key='nav' id='nav'>
         <Grid.Column>
           <Nav toggleSidebar={props.toggleSidebar} loggedIn={props.loggedIn}/>
         </Grid.Column>
       </Grid.Row>
 
-      <Grid.Row key="name" id="name">
+      <Grid.Row key='name' id='name'>
         <Grid.Column>
           <NamePicIntro 
             user={props.currentUser}    editing={props.editing}
@@ -27,7 +27,7 @@ const Content = (props) => {
         </Grid.Column>
       </Grid.Row>
 
-      <Grid.Row key="about" id="about">
+      <Grid.Row key='about' id='about'>
         <Grid.Column>
           <AboutMe 
             user={props.currentUser}     editing={props.editing}
@@ -36,7 +36,7 @@ const Content = (props) => {
         </Grid.Column>
       </Grid.Row>
 
-      <Grid.Row key="skills" id="skills">
+      <Grid.Row key='skills' id='skills'>
         <Grid.Column>
           <Skills 
             skills={props.skills}         editing={props.editing}
@@ -47,7 +47,7 @@ const Content = (props) => {
         </Grid.Column>
       </Grid.Row>
 
-      <Grid.Row key="github" id="github">
+      <Grid.Row key='github' id='github'>
         <Grid.Column>
           <Githubs githubs={props.githubs}  editing={props.editing}
             startEdit={props.startEdit}     loggedIn={props.loggedIn}
@@ -57,7 +57,7 @@ const Content = (props) => {
         </Grid.Column>
       </Grid.Row>
 
-      <Grid.Row key="jobs" id="jobs">
+      <Grid.Row key='jobs' id='jobs'>
         <Grid.Column>
           <Jobs jobs={props.jobs}         editing={props.editing}
             startEdit={props.startEdit}   loggedIn={props.loggedIn}
@@ -67,11 +67,11 @@ const Content = (props) => {
         </Grid.Column>
       </Grid.Row>
 
-      <Grid.Row key="contact" id="contact">
+      <Grid.Row key='contact' id='contact'>
         <Grid.Column>
           <Contact user={props.currentUser} editing={props.editing}
             startEdit={props.startEdit}     loggedIn={props.loggedIn}
-            text="Contact"
+            text='Contact'
           />
         </Grid.Column>
       </Grid.Row>

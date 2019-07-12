@@ -70,27 +70,27 @@ export default class GithubCreate extends Component {
 
         <Form.Field>
           <label>Name</label>
-          <input name="name" value={this.state.content.name} onChange={this.handleChange}/>
+          <input name='name' value={this.state.content.name} onChange={this.handleChange}/>
         </Form.Field>
 
         <Form.Field>
           <label>Front End Repo URL</label>
-          <input name="repo_url_front" value={this.state.content.repo_url_front} onChange={this.handleChange}/>
+          <input name='repo_url_front' value={this.state.content.repo_url_front} onChange={this.handleChange}/>
         </Form.Field>
 
         <Form.Field>
           <label>Back End Repo URL</label>
-          <input name="repo_url_back" value={this.state.content.repo_url_back} onChange={this.handleChange}/>
+          <input name='repo_url_back' value={this.state.content.repo_url_back} onChange={this.handleChange}/>
         </Form.Field>
 
         <Form.Field>
           <label>Demo URL</label>
-          <input name="demo_url" value={this.state.content.demo_url} onChange={this.handleChange}/>
+          <input name='demo_url' value={this.state.content.demo_url} onChange={this.handleChange}/>
         </Form.Field>
 
         <Form.Field>
           <label>Summary</label>
-          <textarea name="summary" value={this.state.content.summary} onChange={this.handleChange}/>
+          <textarea name='summary' value={this.state.content.summary} onChange={this.handleChange}/>
         </Form.Field>
 
         <Form.Field>
@@ -98,7 +98,7 @@ export default class GithubCreate extends Component {
           {this.state.content.contribution.map((con, i) => {
             return (
               <Form.Field key={'con_field_'+i}>
-                <Input name="contribution" 
+                <Input name='contribution' 
                   key={'con_input_'+i}
                   value={con} 
                   onChange={(ev) => this.handleNestedChange(ev, i)}
@@ -111,18 +111,18 @@ export default class GithubCreate extends Component {
               </Form.Field>
             )
           })}
-          <Button type="button" onClick={this.handleAddContribution} color="green">
+          <Button type='button' onClick={this.handleAddContribution} color='green'>
             Add New Contribution
           </Button>
         </Form.Field>
 
         <Form.Field>
           <label>Image URL</label>
-          <input name="img_url" value={this.state.content.img_url} onChange={this.handleChange}/>
+          <input name='img_url' value={this.state.content.img_url} onChange={this.handleChange}/>
         </Form.Field>
 
-        <Button type='submit' color="linkedin">Submit</Button>
-        <Button negative type="button" onClick={() => this.props.handleDelete(this.state.content)}>Delete</Button>
+        <Button type='submit' color='linkedin'>Submit</Button>
+        <Button negative type='button' onClick={() => this.props.handleDelete(this.state.content)}>Delete</Button>
       </Form>
     )
   }

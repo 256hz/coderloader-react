@@ -5,12 +5,12 @@ import { Grid, Card } from 'semantic-ui-react';
 
 const Jobs = (props) => {
   if (!props.jobs) {
-    return <span className="font-heading font-size-large">Loading...</span>
+    return <span className='font-heading font-size-large'>Loading...</span>
   } else {
     let jobs = props.jobs.sort( (a,b) => a.order_id - b.order_id )
     return(
       <div>
-        <SectionHeading text="Positions"
+        <SectionHeading text='Positions'
           startEdit =   {_ => props.startEdit(props.jobs, '#jobs')}
           startNew =    {_ => props.startNew('jobs')}
           editing =     {props.editing}
@@ -22,7 +22,7 @@ const Jobs = (props) => {
         />
 
         <Grid columns={'equal'} stackable centered>
-          <Grid.Row columns={16} padded="horizontally" centered>
+          <Grid.Row columns={16} padded='horizontally' centered>
             <Grid.Column width={2} />
             <Grid.Column width={12} >
 
