@@ -86,7 +86,7 @@ const Github = (props) => {
         </Card.Meta>
         <Divider />
 
-        <Card.Description>
+        <Card.Description className="text">
           {github.summary}
         </Card.Description>
         <Divider />
