@@ -4,15 +4,17 @@ import { withRouter } from "react-router-dom";
 
 const ScrollHandler = ({ location: { hash }, children }) => {
   useEffect(() => {
-  const element = document.getElementById(hash.replace("#", ""));
+    const element = document.getElementById(hash.replace("#", ""));
 
-  setTimeout(() => {
-    window.scrollTo({
-     behavior: element ? "smooth" : "auto",
-     top: element ? element.offsetTop : 0
-    });
-  }, 100);
-  }, [hash]);
+    setTimeout(() => {
+      window.scrollTo({
+      behavior: element ? "smooth" : "auto",
+      top: element ? element.offsetTop : 0
+      });
+    }, 100);
+    }, [hash]);
+
+    window.history.pushState({}, "", '/')
 
   return children;
 };

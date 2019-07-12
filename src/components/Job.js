@@ -31,8 +31,9 @@ const Job = (props) => {
         }
 
         <Card.Content className='font-size-medium'>
+          <div style={{verticalAlign: 'middle'}}>
           <Image spaced floated='left' size='tiny' src={props.job.img_url} alt={props.job.company}/>
-          <Card.Header className='font-size-large'>
+          <Card.Header className='text font-size-medium'>
             {props.job.title}     
           </Card.Header>
           <Card.Meta>
@@ -42,7 +43,9 @@ const Job = (props) => {
             {props.job.start_month} {props.job.start_year} - {props.job.end_month}
             {' '}{props.job.end_year ? props.job.end_year : 'Present'}
           </Card.Meta>
+          </div>
         </Card.Content>
+        
         <Card.Content>
           <Card.Meta>
             SUMMARY

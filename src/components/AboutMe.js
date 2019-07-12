@@ -33,9 +33,9 @@ const AboutMe = (props) => {
           <Grid.Column width={2}></Grid.Column>
           <Grid.Column width={12}>
             <span className='text'> 
-              {words.map( word => {
+              {words.map( (word, i) => {
                 return word.includes('http://')
-                  ? <a href={word} target='_blank' rel='noopener noreferrer'>{word.slice(7) + ' '}</a>
+                  ? <a href={word} target='_blank' rel='noopener noreferrer' key={'a'+i}>{word.slice(7) + ' '}</a>
                   : word + ' '
               })}
             </span>
