@@ -67,7 +67,7 @@ export default class JobsCreate extends Component {
     this.setState({
       content:{
         ...this.state.content,
-        responsibilities: skillCopy
+        skills_used: skillCopy
       }
     })
   }
@@ -166,14 +166,14 @@ export default class JobsCreate extends Component {
           <label>Responsibilities</label>
           {this.state.content.responsibilities.map((res, i) => {
             return (
-              <Form.Field key={res+i+'field'}>
-                <Input name='responsibilities'
-                  key={'resinput'+i} 
-                  value={this.state.content.responsibilities[i]} 
-                  onChange={(ev) => this.handleNestedChange(ev, i)}
+              <Form.Field key={'create_res_field_' + i}>
+                <Input name='create_responsibilities'
+                  key={'create_res_input_'+i} 
+                  value={res} 
+                  onChange={ ev => this.handleNestedChange(ev, i)}
                   action={{
                     type: 'button',
-                    onClick: () => this.handleRemoveResp(i), 
+                    onClick: _ => this.handleRemoveResp(i), 
                     color: 'red', 
                     icon: 'remove',
                     }}
@@ -199,14 +199,14 @@ export default class JobsCreate extends Component {
           <label>Skills Used</label>
           {this.state.content.skills_used.map((skill, i) => {
             return (
-              <Form.Field key={'skill_field_'+i}>
-                <Input name='skills_used' 
-                  key={'skill_input'+i}
-                  value={this.state.content.skills_used[i]} 
+              <Form.Field key={'create_skill_field_'+i}>
+                <Input name='create_skills_used' 
+                  key={'create_skill_input'+i}
+                  value={skill} 
                   onChange={(ev) => this.handleNestedChange(ev, i)}
                   action={{
                     type: 'button', 
-                    onClick: () => this.handleRemoveSkill(i), 
+                    onClick: _ => this.handleRemoveSkill(i), 
                     icon: 'delete', 
                     color: 'red', 
                     }}

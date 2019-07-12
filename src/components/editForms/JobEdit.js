@@ -16,7 +16,16 @@ export default class JobEdit extends Component {
     super(props)
     this.state = {
       content:{
-        id: -1
+        id: -1,
+        skills_used: [''],
+        responsibilities: [''],
+        company: '',
+        title: '',
+        start_month: '',
+        start_year: '',
+        end_month: '',
+        end_year: '',
+        summary: '',
       }
     }
   }
@@ -61,12 +70,12 @@ export default class JobEdit extends Component {
   }
 
   handleRemoveSkill = (i) => {
-    let skillCopy = this.state.content.skills_used
-    skillCopy.splice(i,1)
+    let skillsCopy = this.state.content.skills_used
+    skillsCopy.splice(i,1)
     this.setState({
       content:{
         ...this.state.content,
-        responsibilities: skillCopy
+        skills_used: skillsCopy
       }
     })
   }
@@ -141,14 +150,14 @@ export default class JobEdit extends Component {
         <Form.Group>
           <Form.Field>
             <label>End Month</label>
-            <select name='end_month' value={this.state.content.end_month || ''} onChange={this.handleChange}>
+            <select name='end_month' value={this.state.content.end_month || undefined} onChange={this.handleChange}>
               <Months />
             </select>
           </Form.Field>
 
           <Form.Field>
             <label>End Year</label>
-            <input type='number' name='end_year' step='1' value={this.state.content.end_year || ''} onChange={this.handleChange}/>
+            <input type='number' name='end_year' step='1' value={this.state.content.end_year || undefined} onChange={this.handleChange}/>
           </Form.Field>
         </Form.Group>
         <Divider />
@@ -157,9 +166,9 @@ export default class JobEdit extends Component {
           <label>Responsibilities</label>
           {this.state.content.responsibilities.map((res, i) => {
             return (
-              <Form.Field key={'res_field_'+i}>
-                <Input name='responsibilities'
-                  key={'res_input_'+i} 
+              <Form.Field key={'edit_res_field_'+i}>
+                <Input name='edit_responsibilities'
+                  key={'edit_res_input_'+i} 
                   value={res} 
                   onChange={(ev) => this.handleNestedChange(ev, i)}
                   action={{
@@ -190,9 +199,9 @@ export default class JobEdit extends Component {
           <label>Skills Used</label>
           {this.state.content.skills_used.map((skill, i) => {
             return (
-              <Form.Field key={'skill+field'+i}>
-                <Input name='skills_used' 
-                  key={'skill+input'+i}
+              <Form.Field key={'edit_skill_field_'+i}>
+                <Input name='edit_skills_used' 
+                  key={'skill_input_'+i}
                   value={skill} 
                   onChange={(ev) => this.handleNestedChange(ev, i)}
                   action={{

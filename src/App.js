@@ -9,7 +9,7 @@ import LoggedIn from './components/LoggedIn'
 import Editor from './components/Editor'
 
 // const apiURL = 'http://localhost:3000/api/v1/'
-const apiURL = 'http://pgdb.256hz.com/api/v1/'
+// const apiURL = 'http://pgdb.256hz.com/api/v1/'
 
 const HEADERS_AUTH = {
   'Authorization': 'Bearer ' + localStorage.jwt,
@@ -26,6 +26,7 @@ const DEFAULT_STATE = {
   links: [],
   users: [],
 
+  apiURL: 'http://localhost:3000/api/v1/',
   confirmOpen: false,
   contentToDelete: {},
   creating: {},
@@ -47,6 +48,9 @@ class App extends React.Component {
     constructor() {
         super()
         this.state = DEFAULT_STATE
+
+        fetch(this.state.apiURL+'/users')
+        .catch( _ => this.setState({apiURL: 'http://pgdb.256hz.com/api/v1/'}) ) 
     }
 
     componentDidMount() {
@@ -58,12 +62,12 @@ class App extends React.Component {
       }
       // automated fetch
       anchors.forEach( a => {
-        fetch( apiURL + a )
+        fetch( this.state.apiURL + a )
         .then( res => res.json() )
         .then( json => this.setState({[a]: json}) )
       })
       // special fetch for users - sets current user as first returned
-      fetch( apiURL + 'users').then( res => res.json() )
+      fetch( this.state.apiURL + 'users').then( res => res.json() )
       .then( users => {
         this.setState({users})
         this.setState({currentUser: users[0]})
@@ -82,7 +86,7 @@ class App extends React.Component {
       ev.preventDefault()
       this.setState({message: ''})
       // no-auth POST to retrieve JWT from Rails
-      fetch(apiURL + 'login', {
+      fetch(this.state.apiURL + 'login', {
         method: 'POST',
         headers: HEADERS_NOAUTH,
         body: JSON.stringify({ user: {username, password}})
@@ -145,7 +149,7 @@ class App extends React.Component {
 
     handleSubmit = (content) => {
       // Handles submission of edited content
-      fetch(apiURL+this.state.editingType+'/'+content.id, {
+      fetch(this.state.apiURL+this.state.editingType+'/'+content.id, {
         method: 'PATCH',
         headers: HEADERS_AUTH,
         body: JSON.stringify({...content})
@@ -180,8 +184,8 @@ class App extends React.Component {
 
     shiftOrder = (incomingGroup, item, next) => {
       // Change order of skills, jobs, and githubs.
-      // Params are the group being edited, the item, and whether it's
-      // being shifted up or down in order.
+      // Params are: (group being edited, item, and boolean: whether it's
+      // being shifted up or down in order).
       let group = this.state[incomingGroup].sort( (a,b) => a.order_id - b.order_id )
       let orderIds = group.map( s => s.order_id )
       let curIndex = orderIds.indexOf( item.order_id )
@@ -207,7 +211,7 @@ class App extends React.Component {
         // check if item's order has been changed, and if so, PATCH its order_id
         if (item.order_id !== orderIds[index]) {
           item.order_id = orderIds[index]
-          fetch(apiURL + '/' + incomingGroup + '/'+ item.id, {
+          fetch(this.state.apiURL + '/' + incomingGroup + '/'+ item.id, {
             method: 'PATCH',
             headers: HEADERS_AUTH,
             body: JSON.stringify({...item})
@@ -220,7 +224,7 @@ class App extends React.Component {
 
     handleCreate = (content) => {
       content['order_id']=this.state[this.state.creatingType].length
-      fetch(apiURL+this.state.creatingType, {
+      fetch(this.state.apiURL+this.state.creatingType, {
         method: 'POST',
         headers: HEADERS_AUTH,
         body: JSON.stringify({
@@ -248,7 +252,7 @@ class App extends React.Component {
     }
 
     confirmDelete = (content) => {
-      fetch(apiURL+this.state.editingType+'/'+content.id, {
+      fetch(this.state.apiURL+this.state.editingType+'/'+content.id, {
         method: 'DELETE',
         headers: HEADERS_AUTH
       })
@@ -270,11 +274,14 @@ class App extends React.Component {
         /*
           All content is nested within the Sidebar object.  Inside the sidebar (<Sticky>), 
           components are as follows:
+
           - Close button (top)
           - Login/LoggedIn (login bar/welcome message & logout)
+
           Then, a ternary shows:
           - Navigation (if we're not editing or creating anything) or
-          - Editor (shown if we are editing/creating things) 
+          - Editor (if we are editing/creating things) 
+
           - Close button (bottom)
           Site content is rendered next.
           - NamePicIntro
@@ -282,7 +289,7 @@ class App extends React.Component {
           - Repos
           - Jobs
           - Contact
-          Finally, a confirm window for deleting a resource.
+          Finally, a confirmation window for deleting a resource.
         */
         return(
           <Sidebar.Pushable as={Segment} className='fix-sidebar'>
@@ -354,12 +361,12 @@ class App extends React.Component {
                 />
 
                 <Confirm 
-                  cancelButton={<Button>Go Back</Button>}
+                  cancelButton= {<Button>Go Back</Button>}
                   confirmButton={<Button negative>Delete</Button>}
-                  onCancel={_ => this.setState({confirmOpen: false})}
-                  onConfirm={_ => this.confirmDelete(this.state.contentToDelete)}
-                  open={this.state.confirmOpen}
-                  size='mini'
+                  onCancel=     {_ => this.setState({confirmOpen: false})}
+                  onConfirm=    {_ => this.confirmDelete(this.state.contentToDelete)}
+                  open=         {this.state.confirmOpen}
+                  size=         'mini'
                   />                  
 
               </Segment>
