@@ -5,7 +5,7 @@ import {
   Icon,
   Grid,
   Header,
- } from 'semantic-ui-react'
+  } from 'semantic-ui-react'
 
 export default class SkillsEdit extends React.Component {
 
@@ -44,38 +44,40 @@ export default class SkillsEdit extends React.Component {
             
             <Form.Field>
               <label>Skill</label>
-                  <input name="name" value={this.state.content.name} onChange={(ev) => this.handleChange(ev)}/>
+              <input name='name' value={this.state.content.name} onChange={(ev) => this.handleChange(ev)}/>
             </Form.Field>
 
             <Form.Field>
               <label>Image URL</label>
-                  <input name="img_url" value={this.state.content.img_url} onChange={(ev) => this.handleChange(ev)}/>
+              <input name='img_url' value={this.state.content.img_url} onChange={(ev) => this.handleChange(ev)}/>
             </Form.Field>
 
             <Form.Field>
               <label>Move skill</label>
-                <Button.Group>
-                  <Button 
-                    onClick={_ => this.props.shiftOrder('skills', this.props.content, false)} 
-                    icon={<Icon name="long arrow alternate left" size="large" />}
-                    size="large"
-                  />
-                    
-                  <Button 
-                    onClick={_ => this.props.shiftOrder('skills', this.props.content, true)} 
-                    icon={<Icon name="long arrow alternate right" size="large" />}
-                    size="large"
-                  />
-                </Button.Group>
+              <Button.Group>
+                <Button 
+                  onClick={_ => this.props.shiftOrder('skills', this.props.content, false)} 
+                  icon={<Icon name='long arrow alternate left' size='large' />}
+                  size='large'
+                  type='button'
+                />
+                  
+                <Button 
+                  onClick={_ => this.props.shiftOrder('skills', this.props.content, true)} 
+                  icon={<Icon name='long arrow alternate right' size='large' />}
+                  size='large'
+                  type='button'
+                />
+              </Button.Group>
             </Form.Field>
 
             <Form.Field>
               <Grid centered>
                 <Grid.Row>
-                <Button type='submit' color="linkedin">
+                <Button type='submit' color='linkedin'>
                   Submit
                 </Button>
-                <Button negative onClick={() => this.props.handleDelete(this.state.content)}>
+                <Button type='button' negative onClick={() => this.props.handleDelete(this.state.content)}>
                   Delete
                 </Button>
                 </Grid.Row>
