@@ -161,11 +161,11 @@ export default class JobEdit extends Component {
                 <Input name='edit_responsibilities'
                   key={'edit_res_input_'+i} 
                   value={res} 
-                  onChange={(ev) => this.handleNestedChange(ev, i)}
+                  onChange={ ev => this.handleNestedChange(ev, i)}
                   action={{
                     color: 'red', 
                     icon: 'remove',
-                    onClick: () => this.handleRemoveResp(i), 
+                    onClick: _ => this.handleRemoveResp(i), 
                     type: 'button',
                     }}
                 />
@@ -194,11 +194,11 @@ export default class JobEdit extends Component {
                 <Input name='edit_skills_used' 
                   key={'skill_input_'+i}
                   value={skill} 
-                  onChange={(ev) => this.handleNestedChange(ev, i)}
+                  onChange={ ev => this.handleNestedChange(ev, i) }
                   action={{
                     color: 'red', 
                     icon: 'delete', 
-                    onClick: () => this.handleRemoveSkill(i), 
+                    onClick: _ => this.handleRemoveSkill(i), 
                     type: 'button', 
                     }}
                 />
@@ -225,7 +225,11 @@ export default class JobEdit extends Component {
         <Button type='submit' color='linkedin'>
           Submit
         </Button>
-        <Button negative type='button' onClick={() => this.props.handleDelete(this.state.content)}>
+        <Button 
+          negative 
+          type='button' 
+          onClick={_ => this.props.handleDelete(this.state.content)}
+        >
           Delete
         </Button>
       </Form>

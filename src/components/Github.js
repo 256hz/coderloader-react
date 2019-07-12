@@ -5,27 +5,29 @@ const displayLinks = (github) => {
   if (github.repo_url_back || github.demo_url) {
     return(
       <div className='centered font-size-small'>
+        <p>
         {github.repo_url_front && 
-          <p>
+          <span>
             <a href={github.repo_url_front} target='_blank' rel='noopener noreferrer'>
               Front End Repo
             </a>
-          </p>
+          </span>
         } 
         {github.repo_url_back && 
-          <p>
+          <span>|{' '}
             <a href={github.repo_url_back} target='_blank' rel='noopener noreferrer'>
               Back End Repo
             </a>
-          </p>
+          </span>
         }
         {github.demo_url && 
-          <p>
+          <span>|{' '}
             <a href={github.demo_url} target='_blank' rel='noopener noreferrer'>
               Demo
             </a>
-          </p>
+          </span>
         }
+        </p>
       </div>
     )
   } else {
