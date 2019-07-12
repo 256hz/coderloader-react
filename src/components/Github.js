@@ -71,15 +71,15 @@ const Github = (props) => {
         : null
       }
 
-      <Card.Content target='_blank' className='card-height'>
-        <Card.Header style={{marginBottom: '10px'}} textAlign='center'>
-          {github.name}
-        </Card.Header>
-        
+      <Card.Content target='_blank' className='card-height'>        
         <Image 
           src={github.img_url}
           style={{display: 'block', margin: 'auto', marginBottom: '10px'}} 
         />
+        
+        <Card.Header style={{marginBottom: '10px'}} textAlign='center'>
+          {github.name}
+        </Card.Header>
         
         <Card.Meta>
           <div>{displayLinks(github)}</div>
