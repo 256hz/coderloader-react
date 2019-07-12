@@ -12,13 +12,7 @@ export default class GithubEdit extends Component {
     super(props)
     this.state = {
       content:{
-        id: -1,
-        name: '',
-        demo_url: '',
-        repo_url_back: '',
-        repo_url_front: '',
-        contribution: [''],
-        summary: ''
+        ...props.content
       }
     }
   }
