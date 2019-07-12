@@ -26,7 +26,7 @@ const DEFAULT_STATE = {
   links: [],
   users: [],
 
-  apiURL: 'http://localhost:3000/api/v1/',
+  apiURL: 'http://pgdb.256hz.com/api/v1/',
   confirmOpen: false,
   contentToDelete: {},
   creating: {},
@@ -49,11 +49,11 @@ class App extends React.Component {
         super()
         this.state = DEFAULT_STATE
 
-        fetch(this.state.apiURL+'users')
-        .catch( _ => {
-          this.setState({apiURL: 'http://pgdb.256hz.com/api/v1/'}) 
-          this.forceUpdate()  
-        }) 
+        // fetch(this.state.apiURL+'users')
+        // .catch( _ => {
+        //   this.setState({apiURL: 'http://pgdb.256hz.com/api/v1/'}) 
+        //   this.forceUpdate()  
+        // }) 
     }
 
     componentDidMount() {
