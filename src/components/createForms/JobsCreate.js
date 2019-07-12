@@ -39,6 +39,19 @@ export default class JobsCreate extends Component {
     })
   }
 
+  handleNested = (category, action, index) => {
+    let categoryCopy = this.state.content[category]
+    action === 'add'
+      ? categoryCopy.push('')
+      : categoryCopy.splice(index, 1)
+    this.setState({
+      content: {
+        ...this.state.content,
+        [category]: categoryCopy
+      }
+    })
+  }
+
   handleNestedChange = (ev, i) => {
     let copy = this.state.content[ev.target.name]
     copy[i] = ev.target.value
@@ -48,51 +61,7 @@ export default class JobsCreate extends Component {
         [ev.target.name]: copy
       }
     })
-  }
-
-  handleAddSkill = () => {
-    let skillsCopy = this.state.content.skills_used
-    skillsCopy.push('')
-    this.setState({
-      content:{
-        ...this.state.content,
-        skills_used: skillsCopy
-      }
-    })
-  }
-
-  handleRemoveSkill = (i) => {
-    let skillCopy = this.state.content.skills_used
-    skillCopy.splice(i,1)
-    this.setState({
-      content:{
-        ...this.state.content,
-        skills_used: skillCopy
-      }
-    })
-  }
-
-  handleAddResp = () => {
-    let resCopy = this.state.content.responsibilities
-    resCopy.push('')
-    this.setState({
-      content:{
-        ...this.state.content,
-        responsibilities: resCopy
-      }
-    })
-  }
-
-  handleRemoveResp = (i) => {
-    let resCopy = this.state.content.responsibilities
-    resCopy.splice(i,1)
-    this.setState({
-      content:{
-        ...this.state.content,
-        responsibilities: resCopy
-      }
-    })
-  }
+  } 
 
   handleCreate = () => {
     this.props.handleCreate(this.state.content)
@@ -106,6 +75,7 @@ export default class JobsCreate extends Component {
   }
 
   render(){
+    let category = 'skills_used'
     return(
       <Form inverted onSubmit={() => this.handleCreate(this.state.content)}>
         <Form.Field>
@@ -164,16 +134,16 @@ export default class JobsCreate extends Component {
 
         <Form.Field>
           <label>Responsibilities</label>
-          {this.state.content.responsibilities.map((res, i) => {
+          {this.state.content.responsibilities.map( (res, i) => {
             return (
               <Form.Field key={'create_res_field_' + i}>
-                <Input name='create_responsibilities'
+                <Input name='responsibilities'
                   key={'create_res_input_'+i} 
                   value={res} 
                   onChange={ ev => this.handleNestedChange(ev, i)}
                   action={{
                     type: 'button',
-                    onClick: _ => this.handleRemoveResp(i), 
+                    onClick: _ => this.handleNested('responsibilities', 'remove', i), 
                     color: 'red', 
                     icon: 'remove',
                     }}
@@ -183,7 +153,7 @@ export default class JobsCreate extends Component {
           })}
           
           <Button 
-            onClick={this.handleAddResp} 
+            onClick={_ => this.handleNested('responsibilities', 'add')} 
             color='green'
             type='button'
             >
@@ -200,13 +170,13 @@ export default class JobsCreate extends Component {
           {this.state.content.skills_used.map((skill, i) => {
             return (
               <Form.Field key={'create_skill_field_'+i}>
-                <Input name='create_skills_used' 
+                <Input name={category}
                   key={'create_skill_input'+i}
                   value={skill} 
                   onChange={(ev) => this.handleNestedChange(ev, i)}
                   action={{
                     type: 'button', 
-                    onClick: _ => this.handleRemoveSkill(i), 
+                    onClick: _ => this.handleNested('skills_used', 'remove', i), 
                     icon: 'delete', 
                     color: 'red', 
                     }}
@@ -215,7 +185,7 @@ export default class JobsCreate extends Component {
             )
           })}
           <Button 
-            onClick={this.handleAddSkill} 
+            onClick={_ => this.handleNested('skills_used', 'add')} 
             color='green'
             type='button'
           >

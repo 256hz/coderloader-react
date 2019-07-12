@@ -38,6 +38,19 @@ export default class JobEdit extends Component {
     })
   }
 
+  handleNested = (category, action, index) => {
+    let categoryCopy = this.state.content[category]
+    action === 'add'
+      ? categoryCopy.push('')
+      : categoryCopy.splice(index, 1)
+    this.setState({
+      content: {
+        ...this.state.content,
+        [category]: categoryCopy
+      }
+    })
+  }
+
   handleNestedChange = (ev, i) => {
     let copy = this.state.content[ev.target.name]
     copy[i] = ev.target.value
@@ -45,50 +58,6 @@ export default class JobEdit extends Component {
       content:{
         ...this.state.content,
         [ev.target.name]: copy
-      }
-    })
-  }
-
-  handleAddSkill = () => {
-    let skillsCopy = this.state.content.skills_used
-    skillsCopy.push('')
-    this.setState({
-      content:{
-        ...this.state.content,
-        skills_used: skillsCopy
-      }
-    })
-  }
-
-  handleRemoveSkill = (i) => {
-    let skillsCopy = this.state.content.skills_used
-    skillsCopy.splice(i,1)
-    this.setState({
-      content:{
-        ...this.state.content,
-        skills_used: skillsCopy
-      }
-    })
-  }
-
-  handleAddResp = () => {
-    let resCopy = this.state.content.responsibilities
-    resCopy.push('')
-    this.setState({
-      content:{
-        ...this.state.content,
-        responsibilities: resCopy
-      }
-    })
-  }
-
-  handleRemoveResp = (i) => {
-    let resCopy = this.state.content.responsibilities
-    resCopy.splice(i,1)
-    this.setState({
-      content:{
-        ...this.state.content,
-        responsibilities: resCopy
       }
     })
   }
@@ -141,14 +110,14 @@ export default class JobEdit extends Component {
         <Form.Group>
           <Form.Field>
             <label>End Month</label>
-            <select name='end_month' value={this.state.content.end_month || undefined} onChange={this.handleChange}>
+            <select name='end_month' value={this.state.content.end_month} onChange={this.handleChange}>
               <Months />
             </select>
           </Form.Field>
 
           <Form.Field>
             <label>End Year</label>
-            <input type='number' name='end_year' step='1' value={this.state.content.end_year || undefined} onChange={this.handleChange}/>
+            <input type='number' name='end_year' step='1' value={this.state.content.end_year} onChange={this.handleChange}/>
           </Form.Field>
         </Form.Group>
         <Divider />
@@ -158,23 +127,23 @@ export default class JobEdit extends Component {
           {this.state.content.responsibilities.map( (res, i) => {
             return (
               <Form.Field key={'edit_res_field_'+i}>
-                <Input name={'responsibilities'}
-                  key={'edit_res_input_'+i} 
-                  value={res} 
-                  onChange={ ev => this.handleNestedChange(ev, i)}
-                  action={{
-                    color: 'red', 
-                    icon: 'remove',
-                    onClick: _ => this.handleRemoveResp(i), 
-                    type: 'button',
-                    }}
-                />
+                <Input name='responsibilities'
+                    key={'create_res_input_'+i} 
+                    value={res} 
+                    onChange={ ev => this.handleNestedChange(ev, i)}
+                    action={{
+                      type: 'button',
+                      onClick: _ => this.handleNested('responsibilities', 'remove', i), 
+                      color: 'red', 
+                      icon: 'remove',
+                      }}
+                  />
               </Form.Field>
             )
           })}
           
           <Button 
-            onClick={this.handleAddResp} 
+            onClick={_ => this.handleNested('responsibilities', 'add')} 
             color='green'
             type='button'
             >
@@ -190,23 +159,23 @@ export default class JobEdit extends Component {
           <label>Skills Used</label>
           {this.state.content.skills_used.map( (skill, i) => {
             return (
-              <Form.Field key={'edit_skill_field_'+i}>
+              <Form.Field key={'create_skill_field_'+i}>
                 <Input name={'skills_used'}
-                  key={'skill_input_'+i}
+                  key={'create_skill_input'+i}
                   value={skill} 
-                  onChange={ ev => this.handleNestedChange(ev, i) }
+                  onChange={(ev) => this.handleNestedChange(ev, i)}
                   action={{
-                    color: 'red', 
-                    icon: 'delete', 
-                    onClick: _ => this.handleRemoveSkill(i), 
                     type: 'button', 
+                    onClick: _ => this.handleNested('skills_used', 'remove', i), 
+                    icon: 'delete', 
+                    color: 'red', 
                     }}
                 />
               </Form.Field>
             )
           })}
           <Button 
-            onClick={this.handleAddSkill} 
+            onClick={_ => this.handleNested('skills_used', 'add')} 
             color='green'
             type='button'
           >
