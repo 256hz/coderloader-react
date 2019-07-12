@@ -141,14 +141,14 @@ export default class JobEdit extends Component {
         <Form.Group>
           <Form.Field>
             <label>End Month</label>
-            <select name='end_month' value={this.state.content.end_month} onChange={this.handleChange}>
+            <select name='end_month' value={this.state.content.end_month || ''} onChange={this.handleChange}>
               <Months />
             </select>
           </Form.Field>
 
           <Form.Field>
             <label>End Year</label>
-            <input type='number' name='end_year' step='1' value={this.state.content.end_year} onChange={this.handleChange}/>
+            <input type='number' name='end_year' step='1' value={this.state.content.end_year || ''} onChange={this.handleChange}/>
           </Form.Field>
         </Form.Group>
         <Divider />
@@ -163,9 +163,10 @@ export default class JobEdit extends Component {
                   value={res} 
                   onChange={(ev) => this.handleNestedChange(ev, i)}
                   action={{
-                    onClick: () => this.handleRemoveResp(i), 
                     color: 'red', 
                     icon: 'remove',
+                    onClick: () => this.handleRemoveResp(i), 
+                    type: 'button',
                     }}
                 />
               </Form.Field>
@@ -194,10 +195,11 @@ export default class JobEdit extends Component {
                   key={'skill+input'+i}
                   value={skill} 
                   onChange={(ev) => this.handleNestedChange(ev, i)}
-                  action={{ 
-                    onClick: () => this.handleRemoveSkill(i), 
-                    icon: 'delete', 
+                  action={{
                     color: 'red', 
+                    icon: 'delete', 
+                    onClick: () => this.handleRemoveSkill(i), 
+                    type: 'button', 
                     }}
                 />
               </Form.Field>

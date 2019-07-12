@@ -21,6 +21,8 @@ export default class SkillsEdit extends React.Component {
   static getDerivedStateFromProps(props, state) {
     if (props.content.id !== state.content.id) {
       return {content: props.content}
+    } else {
+      return null
     }
   }
 

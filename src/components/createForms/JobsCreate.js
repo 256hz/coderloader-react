@@ -172,6 +172,7 @@ export default class JobsCreate extends Component {
                   value={this.state.content.responsibilities[i]} 
                   onChange={(ev) => this.handleNestedChange(ev, i)}
                   action={{
+                    type: 'button',
                     onClick: () => this.handleRemoveResp(i), 
                     color: 'red', 
                     icon: 'remove',
@@ -203,7 +204,8 @@ export default class JobsCreate extends Component {
                   key={'skill_input'+i}
                   value={this.state.content.skills_used[i]} 
                   onChange={(ev) => this.handleNestedChange(ev, i)}
-                  action={{ 
+                  action={{
+                    type: 'button', 
                     onClick: () => this.handleRemoveSkill(i), 
                     icon: 'delete', 
                     color: 'red', 

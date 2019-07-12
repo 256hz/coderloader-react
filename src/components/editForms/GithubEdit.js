@@ -114,7 +114,8 @@ export default class GithubEdit extends Component {
                   key={'con_input_'+i}
                   value={con} 
                   onChange={(ev) => this.handleNestedChange(ev, i)}
-                  action={{ 
+                  action={{
+                    type: 'button', 
                     onClick: () => this.handleRemoveContribution(i),
                     icon: 'delete', 
                     color: 'red', 
