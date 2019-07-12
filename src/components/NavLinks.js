@@ -10,10 +10,10 @@ const NavLinks = (props) => {
         <Link className='item font-heading' to='/#skills'  onClick={props.toggleSidebar}> SKILLS </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link className='item font-heading' to='/#jobs'    onClick={props.toggleSidebar}> JOBS   </Link>
+        <Link className='item font-heading' to='/#github'  onClick={props.toggleSidebar}> GITHUB </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link className='item font-heading' to='/#github'  onClick={props.toggleSidebar}> GITHUB </Link>
+        <Link className='item font-heading' to='/#jobs'    onClick={props.toggleSidebar}> JOBS   </Link>
       </Menu.Item>
       <Menu.Item>
         <Link className='item font-heading' to='/#contact' onClick={props.toggleSidebar}> CONTACT</Link>

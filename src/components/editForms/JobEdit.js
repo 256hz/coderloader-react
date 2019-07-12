@@ -16,16 +16,7 @@ export default class JobEdit extends Component {
     super(props)
     this.state = {
       content:{
-        id: -1,
-        skills_used: [''],
-        responsibilities: [''],
-        company: '',
-        title: '',
-        start_month: '',
-        start_year: '',
-        end_month: '',
-        end_year: '',
-        summary: '',
+        ...props.content
       }
     }
   }

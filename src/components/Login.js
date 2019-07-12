@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form, Grid} from 'semantic-ui-react'
+import {Form, Header} from 'semantic-ui-react'
 
 class Login extends React.Component {
     state={
@@ -11,32 +11,32 @@ class Login extends React.Component {
     
     render() { 
         return(
-        <Grid textAlign='center'>
-            {this.props.message}
             <Form>
-                <Form.Group widths={1}>
+                <Header as='h4' color='orange'>
+                    {this.props.message}
+                </Header>
+                <Form.Field>
                     <Form.Input inverted
-                        label={{ icon:'user circle outline inverted' }}
+                        icon='user circle outline'
                         onChange={this.handleUserChange}
-                        iconPosition='left' placeholder='username'
+                        placeholder='username'
                         value={this.state.user}
                     />
-                </Form.Group>
+                </Form.Field>
 
-                <Form.Group widths={1}>
+                <Form.Field>
                     <Form.Input inverted
                         type='password'
-                        label={{ icon:'key' }} 
+                        icon='key'
                         onChange={this.handlePassChange}
-                        iconPosition='left' placeholder='password' 
+                        placeholder='password' 
                         value={this.state.pass}
                     />
-                </Form.Group>
+                </Form.Field>
                 <Form.Button inverted
                     onClick={ev => this.props.login(ev, this.state.user, this.state.pass)}
                 >Login</Form.Button>
             </Form>
-        </Grid>
         )
     }
 }

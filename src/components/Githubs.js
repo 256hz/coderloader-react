@@ -25,7 +25,7 @@ const Githubs = (props) => {
           <Grid.Row columns={16}>
             <Grid.Column width={2} />
             <Grid.Column width={12}>
-              <Card.Group centered>
+              <Card.Group centered doubling itemsPerRow='2'>
                 <br />
                 {githubs.map( (github, index) => {
                   return <Github 

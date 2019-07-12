@@ -1,3 +1,12 @@
+// TO DO:
+// edit githubs/jobs
+// change skills/resp order in job cards
+// apiURL failover?
+// update sandbox
+// add newlines to text parsing
+// maybe make a text parser that handles links & newlines
+// 'hello my name is' spacing
+
 import './App.css';
 import React from 'react'
 import { Icon, Menu, Segment, Sidebar, Sticky, Confirm, Button} from 'semantic-ui-react'
@@ -49,6 +58,7 @@ class App extends React.Component {
         super()
         this.state = DEFAULT_STATE
 
+        // Try local API first, then fail to the remote 
         // fetch(this.state.apiURL+'users')
         // .catch( _ => {
         //   this.setState({apiURL: 'http://pgdb.256hz.com/api/v1/'}) 
@@ -96,15 +106,24 @@ class App extends React.Component {
       }).then( res => res.json() )
         .then( json => {
           if (json && json.jwt) {
+            // Login successful
             localStorage.setItem('jwt', json.jwt)
             localStorage.setItem('username', username)
-            this.setState({username: username, loggedIn: true})
+            this.setState({
+              username: username, 
+              loggedIn: true, 
+              sidebarVisible: false,
+              message: ''
+            })
           } else {
+            // Login failed
             localStorage.removeItem('jwt')
             localStorage.removeItem('username')
-            this.setState({username: '', message: json.message, loggedIn: false})
+            this.setState({
+              username: '', 
+              message: json.message, 
+              loggedIn: false})
           }
-          this.setState({sidebarVisible: false})
         })
   }
 
@@ -219,7 +238,7 @@ class App extends React.Component {
             headers: HEADERS_AUTH,
             body: JSON.stringify({...item})
           }).then( res => res.json() )
-            .then( console.log )
+          //  .then( console.log )
         }
       })
       this.setState({ [group]: group })

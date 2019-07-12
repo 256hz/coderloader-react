@@ -86,12 +86,15 @@ const Github = (props) => {
         </Card.Meta>
         <Divider />
 
-        <Card.Meta>
+        <Card.Description>
           {github.summary}
-        </Card.Meta>
+        </Card.Description>
         <Divider />
 
-        <Card.Description> 
+        <Card.Description>
+          <Card.Meta>
+            CONTRIBUTIONS
+          </Card.Meta> 
           <List relaxed bulleted className='left text'>
             {github.contribution.map(con => {
               return <List.Item key={con}>
