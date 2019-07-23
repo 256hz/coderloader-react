@@ -6,8 +6,8 @@ export default function TextParser(text){
             return <a href={word} target='_blank' rel='noopener noreferrer' key={'a'+i}>{word.slice(7) + ' '}</a>
         } else if (word.includes('https://')) {
             return <a href={word} target='_blank' rel='noopener noreferrer' key={'a'+i}>{word.slice(8) + ' '}</a>
-        } else if (word.includes('\n')) {
-            return <p /> + ' '
+        // } else if (word.includes('\n')) {
+        //     return word.replace(/(\n)+/g, '<br />')
         } else {
             return word + ' '
         }

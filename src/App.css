@@ -96,6 +96,7 @@ img {
   font-size: 1.25rem;
   line-height: 2rem;
   text-align: justify;
+  white-space: pre-line;
 }
 
 /* ----------------- THEMES ------------------- */
