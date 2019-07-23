@@ -13,20 +13,17 @@ const NamePicIntro = (props) => {
          <Grid stackable>
             <Grid.Column width={2} />
             <Grid.Column width={6} verticalAlign='middle'>
-               <span className='text'>Hello, my name is</span>
-               
+               <div className='text'>Hello, my name is</div>
                <br />
-               <span className='font-heading font-size-huge'>
+               <div className='font-heading font-size-huge'>
                   {props.user.first_name} {props.user.last_name} 
-               </span>
-
+               </div>
+               <div className='font-heading font-size-medium'>{props.user.title}</div>
                <br />
-               <span className='font-heading font-size-medium'>{props.user.title}</span>
 
-               <br /><br />
-               <span className='text'>
+               <div className='text'>
                   {TextParser(props.user.intro)}
-               </span>
+               </div>
             </Grid.Column>
             <Grid.Column width={6}>
                <img className='image-circle-portrait'
