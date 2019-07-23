@@ -18,7 +18,7 @@ const AboutMe = (props) => {
       </div>
     )
   } else {
-    let text = TextParser(props.user.bio)
+    
 
     return (
       <div>
@@ -34,7 +34,7 @@ const AboutMe = (props) => {
           <Grid.Column width={2}></Grid.Column>
           <Grid.Column width={12}>
             <span className='text'> 
-              {text}
+              {TextParser(props.user.bio)}
             </span>
           </Grid.Column>
           <Grid.Column width={2}></Grid.Column>

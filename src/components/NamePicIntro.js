@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid } from 'semantic-ui-react'
 
+import TextParser from './TextParser'
 
 const NamePicIntro = (props) => {
    if (!props.user.intro){
@@ -8,7 +9,6 @@ const NamePicIntro = (props) => {
          <span className='font-heading font-size-huge'>Loading...</span>
       )
    } else {
-      let words = props.user.intro.split(' ')
       return(
          <Grid stackable>
             <Grid.Column width={2} />
@@ -25,11 +25,7 @@ const NamePicIntro = (props) => {
 
                <br /><br />
                <span className='text'>
-                  {words.map( (word, i) => {
-                      return word.includes('http://')
-                        ? <a href={word} target='_blank' rel='noopener noreferrer' key={'a'+i}>{word.slice(7) + ' '}</a>
-                        : word + ' '
-                  })}
+                  {TextParser(props.user.intro)}
                </span>
             </Grid.Column>
             <Grid.Column width={6}>
