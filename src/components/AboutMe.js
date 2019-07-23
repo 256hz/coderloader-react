@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid } from 'semantic-ui-react'
 
+import TextParser from './TextParser'
 import SectionHeading from './SectionHeading'
 
 const AboutMe = (props) => {
@@ -8,36 +9,32 @@ const AboutMe = (props) => {
     return (
       <div>
       <SectionHeading text='About Me'
-        startEdit={_ => props.startEdit(props.user, 'users')}
-        editing={props.editing}
-        loggedIn={props.loggedIn}
+        startEdit=  {_ => props.startEdit(props.user, 'users')}
+        editing=    {props.editing}
+        loggedIn=   {props.loggedIn}
         sectionEdit={true}
-        user={props.user}
+        user=       {props.user}
       />
       </div>
     )
   } else {
-    let words = props.user.bio.split(' ')
+    let text = TextParser(props.user.bio)
 
     return (
       <div>
         <SectionHeading text='About Me'
-          startEdit={_ => props.startEdit(props.user, 'users')}
-          editing={props.editing}
-          loggedIn={props.loggedIn}
+          startEdit=  {_ => props.startEdit(props.user, 'users')}
+          editing=    {props.editing}
+          loggedIn=   {props.loggedIn}
           sectionEdit={true}
-        user={props.user}
+          user=       {props.user}
         />
       <Grid columns='equal'>
         <Grid.Row columns={16}>
           <Grid.Column width={2}></Grid.Column>
           <Grid.Column width={12}>
             <span className='text'> 
-              {words.map( (word, i) => {
-                return word.includes('http://')
-                  ? <a href={word} target='_blank' rel='noopener noreferrer' key={'a'+i}>{word.slice(7) + ' '}</a>
-                  : word + ' '
-              })}
+              {text}
             </span>
           </Grid.Column>
           <Grid.Column width={2}></Grid.Column>
