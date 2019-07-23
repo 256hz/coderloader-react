@@ -1,10 +1,5 @@
 // TO DO:
-// edit githubs/jobs
-// change skills/resp order in job cards
 // apiURL failover?
-// update sandbox
-// add newlines to text parsing
-// maybe make a text parser that handles links & newlines
 // 'hello my name is' spacing
 
 import './App.css';
