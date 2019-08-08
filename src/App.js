@@ -30,7 +30,7 @@ const DEFAULT_STATE = {
   links: [],
   users: [],
 
-  apiURL: 'https://pgdb.256hz.com/api/v1/',
+  apiURL: 'https://coderloader-rails.herokuapp.com/api/v1/',
   confirmOpen: false,
   contentToDelete: {},
   creating: {},
