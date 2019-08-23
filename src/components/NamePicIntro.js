@@ -25,7 +25,7 @@ const NamePicIntro = (props) => {
                   {TextParser(props.user.intro)}
                </div>
             </Grid.Column>
-            <Grid.Column width={6}>
+            <Grid.Column width={6} textAlign="center">
                <img className='image-circle-portrait'
                   src={props.user.img_url} alt='portrait'></img>
             </Grid.Column>

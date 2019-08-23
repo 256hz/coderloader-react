@@ -12,9 +12,6 @@ import Login from './components/Login'
 import LoggedIn from './components/LoggedIn'
 import Editor from './components/Editor'
 
-// const apiURL = 'http://localhost:3000/api/v1/'
-// const apiURL = 'http://pgdb.256hz.com/api/v1/'
-
 const HEADERS_AUTH = {
   'Authorization': 'Bearer ' + localStorage.jwt,
   'Content-Type': 'application/json'
@@ -52,17 +49,11 @@ class App extends React.Component {
     constructor() {
         super()
         this.state = DEFAULT_STATE
-
-        // Try local API first, then fail to the remote 
-        // fetch(this.state.apiURL+'users')
-        // .catch( _ => {
-        //   this.setState({apiURL: 'http://pgdb.256hz.com/api/v1/'}) 
-        //   this.forceUpdate()  
-        // }) 
     }
 
     componentDidMount() {
-      // check for logged in user
+      // check for logged-in user
+      // this can be spoofed, but unauthorized requests to the DB will fail
       if (!!localStorage.jwt && !!localStorage.username) {
         this.setState({loggedIn: true, username: localStorage.username})
       } else {
